@@ -16,5 +16,10 @@ namespace audio_spectral_analyser
         {
             InitializeComponent();
         }
+
+        private void OpenFileClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
