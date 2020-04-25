@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "audio-spectral-analyser", "audio-spectral-analyser.csproj", "{E2272277-6144-42DD-9963-E5F45D8B32D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2272277-6144-42DD-9963-E5F45D8B32D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2272277-6144-42DD-9963-E5F45D8B32D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2272277-6144-42DD-9963-E5F45D8B32D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2272277-6144-42DD-9963-E5F45D8B32D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D9990B1-DA7C-4613-B3E8-AC84F2AFCA4F}
+	EndGlobalSection
+EndGlobal
