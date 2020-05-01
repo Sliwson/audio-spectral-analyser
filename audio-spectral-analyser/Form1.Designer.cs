@@ -37,6 +37,7 @@
             this.waveChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
+            this.fftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.spectrumTab = new System.Windows.Forms.TabPage();
             this.fundamentalTab = new System.Windows.Forms.TabPage();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
@@ -49,15 +50,14 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.fftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mainLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waveChart)).BeginInit();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).BeginInit();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.zoomTableLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -127,6 +127,17 @@
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
+            // 
+            // fftChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.fftChart.ChartAreas.Add(chartArea2);
+            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fftChart.Location = new System.Drawing.Point(3, 3);
+            this.fftChart.Name = "fftChart";
+            this.fftChart.Size = new System.Drawing.Size(1144, 493);
+            this.fftChart.TabIndex = 0;
+            this.fftChart.Text = "chart1";
             // 
             // spectrumTab
             // 
@@ -252,17 +263,6 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
-            // fftChart
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.fftChart.ChartAreas.Add(chartArea2);
-            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fftChart.Location = new System.Drawing.Point(3, 3);
-            this.fftChart.Name = "fftChart";
-            this.fftChart.Size = new System.Drawing.Size(1144, 493);
-            this.fftChart.TabIndex = 0;
-            this.fftChart.Text = "chart1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,11 +279,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.waveChart)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.fourierTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).EndInit();
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.zoomTableLayout.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).EndInit();
             this.ResumeLayout(false);
 
         }

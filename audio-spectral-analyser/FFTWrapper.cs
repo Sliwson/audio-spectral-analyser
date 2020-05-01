@@ -37,8 +37,8 @@ namespace audio_spectral_analyser
         public List<float> GetSeries()
         {
             var series = new List<float>();
-            FastFourierTransform.FFT(false, m, buffer);
-            for(int i = 0; i < length / 4 ; i++)
+            FastFourierTransform.FFT(true, m, buffer);
+            for(int i = 0; i < length / 2 ; i++)
             {
                 var c = buffer[i];
                 var mag = Math.Sqrt(c.X * c.X + c.Y * c.Y);

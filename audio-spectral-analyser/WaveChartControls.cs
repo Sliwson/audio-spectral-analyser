@@ -45,9 +45,7 @@ namespace audio_spectral_analyser
 
         private List<(double, double)> Load(string filename)
         {
-            var wave = filename.EndsWith("wav") ?
-                new WaveChannel32(new WaveFileReader(filename)) :
-                new WaveChannel32(new Mp3FileReader(filename));
+            var wave = new AudioFileReader(filename);
 
             length = wave.TotalTime;
             sampleRate = wave.WaveFormat.SampleRate;
@@ -117,8 +115,12 @@ namespace audio_spectral_analyser
                 fftWrapper.Add((float)sample.Item2);
 
             var result = fftWrapper.GetSeries();
+            int i = 0;
             foreach(var f in result)
-                series.Points.Add(f);
+            {
+                series.Points.AddXY(i * sampleRate / count + 1, f);
+                i++;
+            }
         }
     }
 }
