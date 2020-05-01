@@ -22,14 +22,9 @@ namespace audio_spectral_analyser
             this.buffer = new Complex[fftLength];
         }
 
-        bool IsPowerOfTwo(int x)
-        {
-            return (x & (x - 1)) == 0;
-        }
-
         public void Add(float value)
         {
-            buffer[position].X = (float)(value * FastFourierTransform.HammingWindow(position, length));
+            buffer[position].X = value; //(float)(value * FastFourierTransform.HammingWindow(position, length));
             buffer[position].Y = 0; // This is always zero with audio.
             position++;
             if (position >= length)
@@ -37,6 +32,20 @@ namespace audio_spectral_analyser
                 position = 0;
                 FastFourierTransform.FFT(true, m, buffer);
             }
+        }
+
+        public List<float> GetSeries()
+        {
+            var series = new List<float>();
+            FastFourierTransform.FFT(false, m, buffer);
+            for(int i = 0; i < length / 4 ; i++)
+            {
+                var c = buffer[i];
+                var mag = Math.Sqrt(c.X * c.X + c.Y * c.Y);
+                series.Add((float)(20 * Math.Log10(mag)));
+            }
+
+            return series;
         }
     }
 }

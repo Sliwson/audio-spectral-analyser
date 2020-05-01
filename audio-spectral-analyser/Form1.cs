@@ -30,6 +30,7 @@ namespace audio_spectral_analyser
 
             Cursor = Cursors.WaitCursor;
             waveChartControls = new WaveChartControls(waveChart, dialog.FileName);
+            waveChartControls.PlotFFT(fftChart);
             Cursor = Cursors.Default;
         }
 

@@ -101,5 +101,24 @@ namespace audio_spectral_analyser
             foreach (var p in waveList)
                 series.Points.AddXY(p.Item1, p.Item2);
         }
+
+        public void PlotFFT(Chart fftChart)
+        {
+            fftChart.Series.Clear();
+            var series = fftChart.Series.Add("wave");
+            series.ChartType = SeriesChartType.FastLine;
+            series.ChartArea = "ChartArea1";
+
+            var length = waveList.Count;
+            var count = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
+
+            var fftWrapper = new FFTWrapper(count);
+            foreach (var sample in waveList)
+                fftWrapper.Add((float)sample.Item2);
+
+            var result = fftWrapper.GetSeries();
+            foreach(var f in result)
+                series.Points.Add(f);
+        }
     }
 }

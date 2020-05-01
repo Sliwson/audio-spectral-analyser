@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.filenameLabel = new System.Windows.Forms.Label();
@@ -42,18 +43,21 @@
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.zoomTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.zoomInButton = new System.Windows.Forms.Button();
             this.zoomOutButton = new System.Windows.Forms.Button();
+            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.fftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mainLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waveChart)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.fourierTab.SuspendLayout();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.zoomTableLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -115,6 +119,7 @@
             // 
             // fourierTab
             // 
+            this.fourierTab.Controls.Add(this.fftChart);
             this.fourierTab.Location = new System.Drawing.Point(4, 22);
             this.fourierTab.Name = "fourierTab";
             this.fourierTab.Padding = new System.Windows.Forms.Padding(3);
@@ -128,7 +133,7 @@
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
-            this.spectrumTab.Size = new System.Drawing.Size(1150, 549);
+            this.spectrumTab.Size = new System.Drawing.Size(1150, 499);
             this.spectrumTab.TabIndex = 1;
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
@@ -137,7 +142,7 @@
             // 
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 549);
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 499);
             this.fundamentalTab.TabIndex = 2;
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
@@ -189,24 +194,6 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 1;
             // 
-            // mainMenu1
-            // 
-            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem1});
-            // 
-            // menuItem1
-            // 
-            this.menuItem1.Index = 0;
-            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem2});
-            this.menuItem1.Text = "File";
-            // 
-            // menuItem2
-            // 
-            this.menuItem2.Index = 0;
-            this.menuItem2.Text = "Open";
-            this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
-            // 
             // zoomTableLayout
             // 
             this.zoomTableLayout.ColumnCount = 3;
@@ -247,6 +234,35 @@
             this.zoomOutButton.UseVisualStyleBackColor = true;
             this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem2});
+            this.menuItem1.Text = "File";
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 0;
+            this.menuItem2.Text = "Open";
+            this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
+            // 
+            // fftChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.fftChart.ChartAreas.Add(chartArea2);
+            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fftChart.Location = new System.Drawing.Point(3, 3);
+            this.fftChart.Name = "fftChart";
+            this.fftChart.Size = new System.Drawing.Size(1144, 493);
+            this.fftChart.TabIndex = 0;
+            this.fftChart.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,10 +278,12 @@
             this.mainLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waveChart)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.fourierTab.ResumeLayout(false);
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.zoomTableLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,6 +307,7 @@
         private System.Windows.Forms.TableLayoutPanel zoomTableLayout;
         private System.Windows.Forms.Button zoomInButton;
         private System.Windows.Forms.Button zoomOutButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart fftChart;
     }
 }
 
