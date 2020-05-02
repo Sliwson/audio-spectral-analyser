@@ -65,6 +65,17 @@ namespace audio_spectral_analyser
             waveChartControls.PlotSpectogram(spectrumPlot, frameLength, overlap);
         }
 
+        private void RedrawFundamentalFrequency()
+        {
+            if (waveChartControls == null || tabControl.SelectedIndex != 2)
+                return;
+            
+            var frameLength = (int)frameLengthNumeric.Value;
+            var overlap = (double)fundamentalOverlap.Value;
+        }
+
+        #region Redraw bindings
+
         private void OnWindowSelectedIndexChanged(object sender, EventArgs e)
         {
             RedrawAll();
@@ -90,10 +101,23 @@ namespace audio_spectral_analyser
             RedrawAll();
         }
 
+        private void OverlapNumericValueChanged(object sender, EventArgs e)
+        {
+            RedrawSpectogram();
+        }
+
+        private void FundamentalOverlapValueChanged(object sender, EventArgs e)
+        {
+            RedrawFundamentalFrequency();
+        }
+
         private void RedrawAll()
         {
             RedrawFFT();
             RedrawSpectogram();
+            RedrawFundamentalFrequency();
         }
+
+        #endregion
     }
 }
