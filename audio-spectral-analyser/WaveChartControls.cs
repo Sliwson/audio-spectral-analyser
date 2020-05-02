@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using OxyPlot;
 using OxyPlot.WindowsForms;
 using OxyPlot.Series;
+using OxyPlot.Axes;
 
 namespace audio_spectral_analyser
 {
@@ -63,8 +64,7 @@ namespace audio_spectral_analyser
             {
                 Position = OxyPlot.Axes.AxisPosition.Bottom,
                 Title = "Time (s)",
-            }); ;
-
+            });
 
             var series = new FunctionSeries { };
             foreach (var p in waveList)
@@ -114,6 +114,53 @@ namespace audio_spectral_analyser
             var series = new FunctionSeries { };
             for (int i = 0; i < result.Length / 2; i++)
                 series.Points.Add(new DataPoint((double)i * sampleRate / result.Length, 20 * Math.Log10(result[i])));
+
+            model.Series.Add(series);
+            view.Model = model;
+        }
+
+        public void PlotSpectogram(PlotView view, int frameLength, double overlap)
+        {
+            var random = new Random();
+            var data = new double[1000, 1000];
+            for (int i = 0; i < 1000; i++)
+                for (int j = 0; j < 1000; j++)
+                    data[i, j] = random.NextDouble();
+
+            FillSpectogram(view, data);
+        }
+
+        private void FillSpectogram(PlotView view, double[,] data)
+        {
+            var model = new PlotModel { };
+
+            model.Axes.Add(new LinearColorAxis
+            {
+                Palette = OxyPalettes.Hue64
+            });
+
+            model.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Frequency (Hz)",
+            });
+
+            model.Axes.Add(new LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Title = "Time (s)",
+            });
+
+ 
+            var series = new HeatMapSeries
+            {
+                X0 = 0,
+                X1 = length.TotalSeconds,
+                Y0 = 0,
+                Y1 = sampleRate / 2,
+                RenderMethod = HeatMapRenderMethod.Bitmap,
+                Data = data
+            };
 
             model.Series.Add(series);
             view.Model = model;

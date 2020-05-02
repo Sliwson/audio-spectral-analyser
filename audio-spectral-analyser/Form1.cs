@@ -32,13 +32,13 @@ namespace audio_spectral_analyser
             Cursor = Cursors.WaitCursor;
             waveChartControls = new WaveChartControls(dialog.FileName);
             waveChartControls.PlotWave(waveChart);
-            RedrawFFT();
+            RedrawAll();
             Cursor = Cursors.Default;
         }
 
         private void RedrawFFT()
         {
-            if (waveChartControls == null)
+            if (waveChartControls == null || tabControl.SelectedIndex != 0)
                 return;
 
             var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
@@ -55,9 +55,19 @@ namespace audio_spectral_analyser
             }
         }
 
+        private void RedrawSpectogram()
+        {
+            if (waveChartControls == null || tabControl.SelectedIndex != 1)
+                return;
+
+            var frameLength = (int)frameLengthNumeric.Value;
+            var overlap = (double)overlapNumeric.Value;
+            waveChartControls.PlotSpectogram(spectrumPlot, frameLength, overlap);
+        }
+
         private void OnWindowSelectedIndexChanged(object sender, EventArgs e)
         {
-            RedrawFFT();
+            RedrawAll();
         }
 
         private void OneFrameCheckBoxCheckedChanged(object sender, EventArgs e)
@@ -67,12 +77,23 @@ namespace audio_spectral_analyser
 
         private void FrameLengthNumericValueChanged(object sender, EventArgs e)
         {
-            RedrawFFT();
+            RedrawAll();
         }
 
         private void BeginFrameTimeValueChanged(object sender, EventArgs e)
         {
             RedrawFFT();
+        }
+
+        private void TabControlSelectedIndexChanged(object sender, EventArgs e)
+        {
+            RedrawAll();
+        }
+
+        private void RedrawAll()
+        {
+            RedrawFFT();
+            RedrawSpectogram();
         }
     }
 }
