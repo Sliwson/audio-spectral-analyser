@@ -139,6 +139,7 @@
             this.windowCombobox.Name = "windowCombobox";
             this.windowCombobox.Size = new System.Drawing.Size(180, 21);
             this.windowCombobox.TabIndex = 3;
+            this.windowCombobox.SelectedIndexChanged += new System.EventHandler(this.OnWindowSelectedIndexChanged);
             // 
             // subLayout
             // 

@@ -32,8 +32,19 @@ namespace audio_spectral_analyser
             Cursor = Cursors.WaitCursor;
             waveChartControls = new WaveChartControls(dialog.FileName);
             waveChartControls.PlotWave(waveChart);
-            waveChartControls.PlotFFT(fftChart, WindowTypeExtension.FromInt(windowCombobox.SelectedIndex));
+            RedrawFft();
             Cursor = Cursors.Default;
+        }
+
+        private void RedrawFft()
+        {
+            if (waveChartControls != null)
+                waveChartControls.PlotFFT(fftChart, WindowTypeExtension.FromInt(windowCombobox.SelectedIndex));
+        }
+
+        private void OnWindowSelectedIndexChanged(object sender, EventArgs e)
+        {
+            RedrawFft();
         }
     }
 }

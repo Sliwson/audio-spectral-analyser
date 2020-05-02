@@ -36,7 +36,7 @@ namespace audio_spectral_analyser
                 scaledData[i] = data[i] * window[i];
 
             MathNet.Numerics.IntegralTransforms.Fourier.Forward(scaledData, MathNet.Numerics.IntegralTransforms.FourierOptions.Matlab);
-            return data.Select(d => d.Magnitude).ToArray();
+            return scaledData.Select(d => d.Magnitude).ToArray();
         }
 
         private double[] GetWindow(WindowType type, int width)
