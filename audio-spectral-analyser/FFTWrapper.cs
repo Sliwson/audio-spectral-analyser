@@ -11,8 +11,11 @@ namespace audio_spectral_analyser
 {
     class FFTWrapper
     {
-        public FFTWrapper(float[] series)
+        Complex[] data = null;
+
+        public FFTWrapper(Complex[] series)
         {
+            data = series;
         }
 
         public static Complex[] ConvertToFourierSeries(List<DataPoint> data)
@@ -24,30 +27,33 @@ namespace audio_spectral_analyser
             return array;
         }
 
-        public void Add(float value)
+        public double[] Calculate(WindowType windowType)
         {
-            buffer[position].X = value; //(float)(value * FastFourierTransform.HammingWindow(position, length));
-            buffer[position].Y = 0; // This is always zero with audio.
-            position++;
-            if (position >= length)
-            {
-                position = 0;
-                FastFourierTransform.FFT(true, m, buffer);
-            }
+            var length = data.Length;
+            var window = GetWindow(windowType, length);
+            var scaledData = new Complex[length];
+            for (int i = 0; i < data.Length; i++)
+                scaledData[i] = data[i] * window[i];
+
+            MathNet.Numerics.IntegralTransforms.Fourier.Forward(scaledData, MathNet.Numerics.IntegralTransforms.FourierOptions.Matlab);
+            return data.Select(d => d.Magnitude).ToArray();
         }
 
-        public List<float> GetSeries()
+        private double[] GetWindow(WindowType type, int width)
         {
-            var series = new List<float>();
-            FastFourierTransform.FFT(true, m, buffer);
-            for(int i = 0; i < length / 2 ; i++)
+            switch (type)
             {
-                var c = buffer[i];
-                var mag = Math.Sqrt(c.X * c.X + c.Y * c.Y);
-                series.Add((float)(20 * Math.Log10(mag)));
+                case WindowType.Rectangle:
+                    var window = new double[width];
+                    window.Fill(1.0);
+                    return window;
+                case WindowType.Hamming:
+                    return Window.Hamming(width);
+                case WindowType.Hann:
+                    return Window.Hann(width);
+                default:
+                    throw new NotImplementedException();
             }
-
-            return series;
         }
     }
 }

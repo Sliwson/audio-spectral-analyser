@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.filenameLabel = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
-            this.fftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.spectrumTab = new System.Windows.Forms.TabPage();
             this.fundamentalTab = new System.Windows.Forms.TabPage();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
@@ -46,10 +44,10 @@
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.waveChart = new OxyPlot.WindowsForms.PlotView();
+            this.fftChart = new OxyPlot.WindowsForms.PlotView();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).BeginInit();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -108,17 +106,6 @@
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
-            // 
-            // fftChart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.fftChart.ChartAreas.Add(chartArea1);
-            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fftChart.Location = new System.Drawing.Point(3, 3);
-            this.fftChart.Name = "fftChart";
-            this.fftChart.Size = new System.Drawing.Size(1144, 493);
-            this.fftChart.TabIndex = 0;
-            this.fftChart.Text = "chart1";
             // 
             // spectrumTab
             // 
@@ -218,6 +205,20 @@
             this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
+            // fftChart
+            // 
+            this.fftChart.BackColor = System.Drawing.Color.White;
+            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fftChart.Location = new System.Drawing.Point(3, 3);
+            this.fftChart.Name = "fftChart";
+            this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fftChart.Size = new System.Drawing.Size(1144, 493);
+            this.fftChart.TabIndex = 0;
+            this.fftChart.Text = "plotView1";
+            this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fftChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fftChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,7 +234,6 @@
             this.mainLayout.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.fourierTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fftChart)).EndInit();
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -256,8 +256,8 @@
         private System.Windows.Forms.TableLayoutPanel subLayout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart fftChart;
         private OxyPlot.WindowsForms.PlotView waveChart;
+        private OxyPlot.WindowsForms.PlotView fftChart;
     }
 }
 

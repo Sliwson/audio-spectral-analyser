@@ -74,7 +74,7 @@ namespace audio_spectral_analyser
             view.Model = model;
         }
 
-        public void PlotFFT(PlotView view)
+        public void PlotFFT(PlotView view, WindowType windowType)
         {
             var model = new PlotModel { };
 
@@ -90,32 +90,14 @@ namespace audio_spectral_analyser
             }); ;
 
 
+            var fft = new FFTWrapper(FFTWrapper.ConvertToFourierSeries(waveList));
+            var result = fft.Calculate(windowType);
             var series = new FunctionSeries { };
-            foreach (var p in waveList)
-                series.Points.Add(p);
+            for (int i = 0; i < result.Length / 2; i++)
+                series.Points.Add(new DataPoint((double)i * sampleRate / result.Length, 20 * Math.Log10(result[i])));
 
             model.Series.Add(series);
             view.Model = model;
-
-            fftChart.Series.Clear();
-            var series = fftChart.Series.Add("wave");
-            series.ChartType = SeriesChartType.FastLine;
-            series.ChartArea = "ChartArea1";
-
-            var length = waveList.Count;
-            var count = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
-
-            var fftWrapper = new FFTWrapper(count);
-            foreach (var sample in waveList)
-                fftWrapper.Add((float)sample.Item2);
-
-            var result = fftWrapper.GetSeries();
-            int i = 0;
-            foreach (var f in result)
-            {
-                series.Points.AddXY(i * sampleRate / count + 1, f);
-                i++;
-            }
         }
     }
 }

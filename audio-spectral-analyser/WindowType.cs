@@ -6,10 +6,23 @@ using System.Threading.Tasks;
 
 namespace audio_spectral_analyser
 {
-    enum WindowType
+    public enum WindowType
     {
         Rectangle,
         Hamming,
         Hann
+    }
+
+    public static class WindowTypeExtension
+    {
+        public static WindowType FromInt(int i)
+        {
+            try
+            {
+                return (WindowType)i;
+            } 
+            catch { }
+            return WindowType.Rectangle;
+        }
     }
 }
