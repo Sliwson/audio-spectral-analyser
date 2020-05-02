@@ -34,6 +34,11 @@
             this.filenameLabel = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.fftChart = new OxyPlot.WindowsForms.PlotView();
+            this.oneFrameCheckBox = new System.Windows.Forms.CheckBox();
+            this.beginLabel = new System.Windows.Forms.Label();
+            this.beginFrameTime = new System.Windows.Forms.NumericUpDown();
             this.spectrumTab = new System.Windows.Forms.TabPage();
             this.fundamentalTab = new System.Windows.Forms.TabPage();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
@@ -43,19 +48,14 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.fftChart = new OxyPlot.WindowsForms.PlotView();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.beginLabel = new System.Windows.Forms.Label();
             this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
-            this.timeUpDown = new System.Windows.Forms.NumericUpDown();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
-            this.subLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).BeginInit();
+            this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -76,7 +76,7 @@
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Size = new System.Drawing.Size(1164, 678);
+            this.mainLayout.Size = new System.Drawing.Size(1164, 594);
             this.mainLayout.TabIndex = 0;
             // 
             // filenameLabel
@@ -99,7 +99,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 213);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1158, 462);
+            this.tabControl.Size = new System.Drawing.Size(1158, 378);
             this.tabControl.TabIndex = 2;
             // 
             // fourierTab
@@ -108,17 +108,92 @@
             this.fourierTab.Location = new System.Drawing.Point(4, 22);
             this.fourierTab.Name = "fourierTab";
             this.fourierTab.Padding = new System.Windows.Forms.Padding(3);
-            this.fourierTab.Size = new System.Drawing.Size(1150, 436);
+            this.fourierTab.Size = new System.Drawing.Size(1150, 352);
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.fftChart, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.oneFrameCheckBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.beginLabel, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.beginFrameTime, 3, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1144, 346);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // fftChart
+            // 
+            this.fftChart.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.SetColumnSpan(this.fftChart, 5);
+            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fftChart.Location = new System.Drawing.Point(3, 33);
+            this.fftChart.Name = "fftChart";
+            this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fftChart.Size = new System.Drawing.Size(1138, 310);
+            this.fftChart.TabIndex = 0;
+            this.fftChart.Text = "plotView1";
+            this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fftChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fftChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // oneFrameCheckBox
+            // 
+            this.oneFrameCheckBox.AutoSize = true;
+            this.oneFrameCheckBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.oneFrameCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.oneFrameCheckBox.Name = "oneFrameCheckBox";
+            this.oneFrameCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.oneFrameCheckBox.TabIndex = 1;
+            this.oneFrameCheckBox.Text = "One frame only";
+            this.oneFrameCheckBox.UseVisualStyleBackColor = true;
+            this.oneFrameCheckBox.CheckedChanged += new System.EventHandler(this.OneFrameCheckBoxCheckedChanged);
+            // 
+            // beginLabel
+            // 
+            this.beginLabel.AutoSize = true;
+            this.beginLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beginLabel.Location = new System.Drawing.Point(203, 0);
+            this.beginLabel.Name = "beginLabel";
+            this.beginLabel.Size = new System.Drawing.Size(94, 30);
+            this.beginLabel.TabIndex = 2;
+            this.beginLabel.Text = "Begin:";
+            this.beginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // beginFrameTime
+            // 
+            this.beginFrameTime.DecimalPlaces = 2;
+            this.beginFrameTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beginFrameTime.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.beginFrameTime.Location = new System.Drawing.Point(303, 6);
+            this.beginFrameTime.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.beginFrameTime.Name = "beginFrameTime";
+            this.beginFrameTime.Size = new System.Drawing.Size(94, 20);
+            this.beginFrameTime.TabIndex = 3;
+            this.beginFrameTime.ValueChanged += new System.EventHandler(this.BeginFrameTimeValueChanged);
             // 
             // spectrumTab
             // 
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
-            this.spectrumTab.Size = new System.Drawing.Size(1150, 457);
+            this.spectrumTab.Size = new System.Drawing.Size(1150, 373);
             this.spectrumTab.TabIndex = 1;
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
@@ -127,7 +202,7 @@
             // 
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 457);
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 373);
             this.fundamentalTab.TabIndex = 2;
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
@@ -205,64 +280,6 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.fftChart, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.beginLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.timeUpDown, 3, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1144, 430);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // fftChart
-            // 
-            this.fftChart.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.SetColumnSpan(this.fftChart, 5);
-            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fftChart.Location = new System.Drawing.Point(3, 33);
-            this.fftChart.Name = "fftChart";
-            this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fftChart.Size = new System.Drawing.Size(1138, 394);
-            this.fftChart.TabIndex = 0;
-            this.fftChart.Text = "plotView1";
-            this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.fftChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.fftChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkBox1.Location = new System.Drawing.Point(3, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(94, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "One frame only";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // beginLabel
-            // 
-            this.beginLabel.AutoSize = true;
-            this.beginLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.beginLabel.Location = new System.Drawing.Point(203, 0);
-            this.beginLabel.Name = "beginLabel";
-            this.beginLabel.Size = new System.Drawing.Size(94, 30);
-            this.beginLabel.TabIndex = 2;
-            this.beginLabel.Text = "Begin:";
-            this.beginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frameLengthNumeric
             // 
             this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
@@ -285,27 +302,13 @@
             0,
             0,
             0});
-            // 
-            // timeUpDown
-            // 
-            this.timeUpDown.DecimalPlaces = 2;
-            this.timeUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.timeUpDown.Location = new System.Drawing.Point(303, 6);
-            this.timeUpDown.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.timeUpDown.Name = "timeUpDown";
-            this.timeUpDown.Size = new System.Drawing.Size(94, 20);
-            this.timeUpDown.TabIndex = 3;
+            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 698);
+            this.ClientSize = new System.Drawing.Size(1184, 614);
             this.Controls.Add(this.mainLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
@@ -316,12 +319,12 @@
             this.mainLayout.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.fourierTab.ResumeLayout(false);
-            this.subLayout.ResumeLayout(false);
-            this.subLayout.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).EndInit();
+            this.subLayout.ResumeLayout(false);
+            this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -344,9 +347,9 @@
         private PowerNumericUpDown frameLengthNumeric;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private OxyPlot.WindowsForms.PlotView fftChart;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox oneFrameCheckBox;
         private System.Windows.Forms.Label beginLabel;
-        private System.Windows.Forms.NumericUpDown timeUpDown;
+        private System.Windows.Forms.NumericUpDown beginFrameTime;
     }
 }
 

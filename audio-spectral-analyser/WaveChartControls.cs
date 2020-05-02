@@ -74,7 +74,29 @@ namespace audio_spectral_analyser
             view.Model = model;
         }
 
-        public void PlotFFT(PlotView view, WindowType windowType)
+        public void PlotFFTFull(PlotView view, WindowType windowType)
+        {
+            var fft = new FFTWrapper(waveList);
+            var result = fft.Calculate(windowType);
+            FillFFTView(view, result);
+        }
+
+        public void PlotFFTFrame(PlotView view, WindowType type, int frameLength, double beginTime)
+        {
+            var result = GetSample(frameLength, beginTime).ToList();
+            var fft = new FFTWrapper(result);
+            var calculated = fft.Calculate(type);
+            FillFFTView(view, calculated);
+        }
+
+        private DataPoint[] GetSample(int frameLength, double beginTime)
+        {
+            var result = waveList.Where(w => w.X >= beginTime).ToArray();
+            Array.Resize(ref result, frameLength);
+            return result;
+        }
+
+        private void FillFFTView(PlotView view, double[] result)
         {
             var model = new PlotModel { };
 
@@ -89,8 +111,6 @@ namespace audio_spectral_analyser
                 Title = "Frequency (Hz)",
             });
 
-            var fft = new FFTWrapper(FFTWrapper.ConvertToFourierSeries(waveList));
-            var result = fft.Calculate(windowType);
             var series = new FunctionSeries { };
             for (int i = 0; i < result.Length / 2; i++)
                 series.Points.Add(new DataPoint((double)i * sampleRate / result.Length, 20 * Math.Log10(result[i])));

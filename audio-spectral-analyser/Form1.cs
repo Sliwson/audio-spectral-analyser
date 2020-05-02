@@ -32,19 +32,47 @@ namespace audio_spectral_analyser
             Cursor = Cursors.WaitCursor;
             waveChartControls = new WaveChartControls(dialog.FileName);
             waveChartControls.PlotWave(waveChart);
-            RedrawFft();
+            RedrawFFT();
             Cursor = Cursors.Default;
         }
 
-        private void RedrawFft()
+        private void RedrawFFT()
         {
-            if (waveChartControls != null)
-                waveChartControls.PlotFFT(fftChart, WindowTypeExtension.FromInt(windowCombobox.SelectedIndex));
+            if (waveChartControls == null)
+                return;
+
+            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
+            var oneFrame = oneFrameCheckBox.Checked;
+            if (oneFrame)
+            {
+                var frameLength = (int)frameLengthNumeric.Value;
+                var beginTime = (double)beginFrameTime.Value;
+                waveChartControls.PlotFFTFrame(fftChart, type, frameLength, beginTime);
+            }
+            else
+            {
+                waveChartControls.PlotFFTFull(fftChart, type);
+            }
         }
 
         private void OnWindowSelectedIndexChanged(object sender, EventArgs e)
         {
-            RedrawFft();
+            RedrawFFT();
+        }
+
+        private void OneFrameCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            RedrawFFT();
+        }
+
+        private void FrameLengthNumericValueChanged(object sender, EventArgs e)
+        {
+            RedrawFFT();
+        }
+
+        private void BeginFrameTimeValueChanged(object sender, EventArgs e)
+        {
+            RedrawFFT();
         }
     }
 }

@@ -13,6 +13,11 @@ namespace audio_spectral_analyser
     {
         Complex[] data = null;
 
+        public FFTWrapper(List<DataPoint> series)
+        {
+            data = ConvertToFourierSeries(series);
+        }
+
         public FFTWrapper(Complex[] series)
         {
             data = series;
