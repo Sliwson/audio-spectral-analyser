@@ -34,7 +34,7 @@
             this.filenameLabel = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.fourierLayout = new System.Windows.Forms.TableLayoutPanel();
             this.fftChart = new OxyPlot.WindowsForms.PlotView();
             this.oneFrameCheckBox = new System.Windows.Forms.CheckBox();
             this.beginLabel = new System.Windows.Forms.Label();
@@ -49,13 +49,27 @@
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
+            this.spectrumLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.frameOverlapLabel = new System.Windows.Forms.Label();
+            this.overlapNumeric = new System.Windows.Forms.NumericUpDown();
+            this.spectrumPlot = new OxyPlot.WindowsForms.PlotView();
+            this.fundamentalLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.fundamentalOverlapLabel = new System.Windows.Forms.Label();
+            this.fundamentalOverlap = new System.Windows.Forms.NumericUpDown();
+            this.fundamentalPlot = new OxyPlot.WindowsForms.PlotView();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.fourierLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).BeginInit();
+            this.spectrumTab.SuspendLayout();
+            this.fundamentalTab.SuspendLayout();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
+            this.spectrumLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).BeginInit();
+            this.fundamentalLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -76,7 +90,7 @@
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Size = new System.Drawing.Size(1164, 594);
+            this.mainLayout.Size = new System.Drawing.Size(1164, 573);
             this.mainLayout.TabIndex = 0;
             // 
             // filenameLabel
@@ -99,50 +113,50 @@
             this.tabControl.Location = new System.Drawing.Point(3, 213);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1158, 378);
+            this.tabControl.Size = new System.Drawing.Size(1158, 357);
             this.tabControl.TabIndex = 2;
             // 
             // fourierTab
             // 
-            this.fourierTab.Controls.Add(this.tableLayoutPanel1);
+            this.fourierTab.Controls.Add(this.fourierLayout);
             this.fourierTab.Location = new System.Drawing.Point(4, 22);
             this.fourierTab.Name = "fourierTab";
             this.fourierTab.Padding = new System.Windows.Forms.Padding(3);
-            this.fourierTab.Size = new System.Drawing.Size(1150, 352);
+            this.fourierTab.Size = new System.Drawing.Size(1150, 331);
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // fourierLayout
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.fftChart, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.oneFrameCheckBox, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.beginLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.beginFrameTime, 3, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1144, 346);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.fourierLayout.ColumnCount = 5;
+            this.fourierLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fourierLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fourierLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fourierLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fourierLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fourierLayout.Controls.Add(this.fftChart, 0, 1);
+            this.fourierLayout.Controls.Add(this.oneFrameCheckBox, 0, 0);
+            this.fourierLayout.Controls.Add(this.beginLabel, 2, 0);
+            this.fourierLayout.Controls.Add(this.beginFrameTime, 3, 0);
+            this.fourierLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierLayout.Location = new System.Drawing.Point(3, 3);
+            this.fourierLayout.Name = "fourierLayout";
+            this.fourierLayout.RowCount = 2;
+            this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fourierLayout.Size = new System.Drawing.Size(1144, 325);
+            this.fourierLayout.TabIndex = 0;
             // 
             // fftChart
             // 
             this.fftChart.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.SetColumnSpan(this.fftChart, 5);
+            this.fourierLayout.SetColumnSpan(this.fftChart, 5);
             this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fftChart.Location = new System.Drawing.Point(3, 33);
             this.fftChart.Name = "fftChart";
             this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fftChart.Size = new System.Drawing.Size(1138, 310);
+            this.fftChart.Size = new System.Drawing.Size(1138, 289);
             this.fftChart.TabIndex = 0;
             this.fftChart.Text = "plotView1";
             this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -190,19 +204,21 @@
             // 
             // spectrumTab
             // 
+            this.spectrumTab.Controls.Add(this.spectrumLayout);
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
-            this.spectrumTab.Size = new System.Drawing.Size(1150, 373);
+            this.spectrumTab.Size = new System.Drawing.Size(1150, 331);
             this.spectrumTab.TabIndex = 1;
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
             // 
             // fundamentalTab
             // 
+            this.fundamentalTab.Controls.Add(this.fundamentalLayout);
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 373);
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 331);
             this.fundamentalTab.TabIndex = 2;
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
@@ -304,11 +320,149 @@
             0});
             this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
+            // spectrumLayout
+            // 
+            this.spectrumLayout.ColumnCount = 3;
+            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.spectrumLayout.Controls.Add(this.frameOverlapLabel, 0, 0);
+            this.spectrumLayout.Controls.Add(this.overlapNumeric, 1, 0);
+            this.spectrumLayout.Controls.Add(this.spectrumPlot, 0, 1);
+            this.spectrumLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spectrumLayout.Location = new System.Drawing.Point(3, 3);
+            this.spectrumLayout.Name = "spectrumLayout";
+            this.spectrumLayout.RowCount = 2;
+            this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.spectrumLayout.Size = new System.Drawing.Size(1144, 325);
+            this.spectrumLayout.TabIndex = 0;
+            // 
+            // frameOverlapLabel
+            // 
+            this.frameOverlapLabel.AutoSize = true;
+            this.frameOverlapLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frameOverlapLabel.Location = new System.Drawing.Point(3, 0);
+            this.frameOverlapLabel.Name = "frameOverlapLabel";
+            this.frameOverlapLabel.Size = new System.Drawing.Size(94, 30);
+            this.frameOverlapLabel.TabIndex = 0;
+            this.frameOverlapLabel.Text = "Overlap:";
+            this.frameOverlapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // overlapNumeric
+            // 
+            this.overlapNumeric.DecimalPlaces = 2;
+            this.overlapNumeric.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.overlapNumeric.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.overlapNumeric.Location = new System.Drawing.Point(103, 6);
+            this.overlapNumeric.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.overlapNumeric.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.overlapNumeric.Name = "overlapNumeric";
+            this.overlapNumeric.Size = new System.Drawing.Size(94, 20);
+            this.overlapNumeric.TabIndex = 1;
+            this.overlapNumeric.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // spectrumPlot
+            // 
+            this.spectrumPlot.BackColor = System.Drawing.Color.White;
+            this.spectrumLayout.SetColumnSpan(this.spectrumPlot, 3);
+            this.spectrumPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spectrumPlot.Location = new System.Drawing.Point(3, 33);
+            this.spectrumPlot.Name = "spectrumPlot";
+            this.spectrumPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.spectrumPlot.Size = new System.Drawing.Size(1138, 289);
+            this.spectrumPlot.TabIndex = 2;
+            this.spectrumPlot.Text = "plotView1";
+            this.spectrumPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.spectrumPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.spectrumPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // fundamentalLayout
+            // 
+            this.fundamentalLayout.ColumnCount = 3;
+            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fundamentalLayout.Controls.Add(this.fundamentalOverlapLabel, 0, 0);
+            this.fundamentalLayout.Controls.Add(this.fundamentalOverlap, 1, 0);
+            this.fundamentalLayout.Controls.Add(this.fundamentalPlot, 0, 1);
+            this.fundamentalLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalLayout.Location = new System.Drawing.Point(0, 0);
+            this.fundamentalLayout.Name = "fundamentalLayout";
+            this.fundamentalLayout.RowCount = 2;
+            this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 331);
+            this.fundamentalLayout.TabIndex = 1;
+            // 
+            // fundamentalOverlapLabel
+            // 
+            this.fundamentalOverlapLabel.AutoSize = true;
+            this.fundamentalOverlapLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalOverlapLabel.Location = new System.Drawing.Point(3, 0);
+            this.fundamentalOverlapLabel.Name = "fundamentalOverlapLabel";
+            this.fundamentalOverlapLabel.Size = new System.Drawing.Size(94, 30);
+            this.fundamentalOverlapLabel.TabIndex = 0;
+            this.fundamentalOverlapLabel.Text = "Overlap:";
+            this.fundamentalOverlapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // fundamentalOverlap
+            // 
+            this.fundamentalOverlap.DecimalPlaces = 2;
+            this.fundamentalOverlap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalOverlap.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.fundamentalOverlap.Location = new System.Drawing.Point(103, 6);
+            this.fundamentalOverlap.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.fundamentalOverlap.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fundamentalOverlap.Name = "fundamentalOverlap";
+            this.fundamentalOverlap.Size = new System.Drawing.Size(94, 20);
+            this.fundamentalOverlap.TabIndex = 1;
+            this.fundamentalOverlap.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // fundamentalPlot
+            // 
+            this.fundamentalPlot.BackColor = System.Drawing.Color.White;
+            this.fundamentalLayout.SetColumnSpan(this.fundamentalPlot, 3);
+            this.fundamentalPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalPlot.Location = new System.Drawing.Point(3, 33);
+            this.fundamentalPlot.Name = "fundamentalPlot";
+            this.fundamentalPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 295);
+            this.fundamentalPlot.TabIndex = 2;
+            this.fundamentalPlot.Text = "plotView1";
+            this.fundamentalPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fundamentalPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fundamentalPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 614);
+            this.ClientSize = new System.Drawing.Size(1184, 593);
             this.Controls.Add(this.mainLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
@@ -319,12 +473,20 @@
             this.mainLayout.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.fourierTab.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.fourierLayout.ResumeLayout(false);
+            this.fourierLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).EndInit();
+            this.spectrumTab.ResumeLayout(false);
+            this.fundamentalTab.ResumeLayout(false);
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
+            this.spectrumLayout.ResumeLayout(false);
+            this.spectrumLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).EndInit();
+            this.fundamentalLayout.ResumeLayout(false);
+            this.fundamentalLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -345,11 +507,19 @@
         private System.Windows.Forms.Label label1;
         private OxyPlot.WindowsForms.PlotView waveChart;
         private PowerNumericUpDown frameLengthNumeric;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel fourierLayout;
         private OxyPlot.WindowsForms.PlotView fftChart;
         private System.Windows.Forms.CheckBox oneFrameCheckBox;
         private System.Windows.Forms.Label beginLabel;
         private System.Windows.Forms.NumericUpDown beginFrameTime;
+        private System.Windows.Forms.TableLayoutPanel spectrumLayout;
+        private System.Windows.Forms.Label frameOverlapLabel;
+        private System.Windows.Forms.NumericUpDown overlapNumeric;
+        private OxyPlot.WindowsForms.PlotView spectrumPlot;
+        private System.Windows.Forms.TableLayoutPanel fundamentalLayout;
+        private System.Windows.Forms.Label fundamentalOverlapLabel;
+        private System.Windows.Forms.NumericUpDown fundamentalOverlap;
+        private OxyPlot.WindowsForms.PlotView fundamentalPlot;
     }
 }
 
