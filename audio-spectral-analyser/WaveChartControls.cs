@@ -80,15 +80,14 @@ namespace audio_spectral_analyser
 
             model.Axes.Add(new OxyPlot.Axes.LinearAxis
             {
-                Title = "Magnitude"
+                Title = "Amplitude (dB)"
             });
 
             model.Axes.Add(new OxyPlot.Axes.LinearAxis
             {
                 Position = OxyPlot.Axes.AxisPosition.Bottom,
                 Title = "Frequency (Hz)",
-            }); ;
-
+            });
 
             var fft = new FFTWrapper(FFTWrapper.ConvertToFourierSeries(waveList));
             var result = fft.Calculate(windowType);

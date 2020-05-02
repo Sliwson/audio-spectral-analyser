@@ -34,22 +34,22 @@
             this.filenameLabel = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
+            this.fftChart = new OxyPlot.WindowsForms.PlotView();
             this.spectrumTab = new System.Windows.Forms.TabPage();
             this.fundamentalTab = new System.Windows.Forms.TabPage();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
+            this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.waveChart = new OxyPlot.WindowsForms.PlotView();
-            this.fftChart = new OxyPlot.WindowsForms.PlotView();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
             this.subLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -107,6 +107,20 @@
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
             // 
+            // fftChart
+            // 
+            this.fftChart.BackColor = System.Drawing.Color.White;
+            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fftChart.Location = new System.Drawing.Point(3, 3);
+            this.fftChart.Name = "fftChart";
+            this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fftChart.Size = new System.Drawing.Size(1144, 493);
+            this.fftChart.TabIndex = 0;
+            this.fftChart.Text = "plotView1";
+            this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fftChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fftChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // spectrumTab
             // 
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
@@ -147,7 +161,7 @@
             this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.subLayout.Controls.Add(this.label1, 0, 0);
-            this.subLayout.Controls.Add(this.numericUpDown1, 1, 0);
+            this.subLayout.Controls.Add(this.frameLengthNumeric, 1, 0);
             this.subLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.subLayout.Location = new System.Drawing.Point(3, 183);
             this.subLayout.Name = "subLayout";
@@ -167,12 +181,42 @@
             this.label1.Text = "Frame length:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // numericUpDown1
+            // frameLengthNumeric
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(83, 3);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
+            this.frameLengthNumeric.Maximum = new decimal(new int[] {
+            16384,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Name = "frameLengthNumeric";
+            this.frameLengthNumeric.ReadOnly = true;
+            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
+            this.frameLengthNumeric.TabIndex = 1;
+            this.frameLengthNumeric.Value = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            // 
+            // waveChart
+            // 
+            this.waveChart.BackColor = System.Drawing.Color.White;
+            this.mainLayout.SetColumnSpan(this.waveChart, 2);
+            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.waveChart.Location = new System.Drawing.Point(3, 33);
+            this.waveChart.Name = "waveChart";
+            this.waveChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.waveChart.Size = new System.Drawing.Size(1158, 144);
+            this.waveChart.TabIndex = 6;
+            this.waveChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // mainMenu1
             // 
@@ -192,34 +236,6 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
-            // waveChart
-            // 
-            this.waveChart.BackColor = System.Drawing.Color.White;
-            this.mainLayout.SetColumnSpan(this.waveChart, 2);
-            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.waveChart.Location = new System.Drawing.Point(3, 33);
-            this.waveChart.Name = "waveChart";
-            this.waveChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.waveChart.Size = new System.Drawing.Size(1158, 144);
-            this.waveChart.TabIndex = 6;
-            this.waveChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // fftChart
-            // 
-            this.fftChart.BackColor = System.Drawing.Color.White;
-            this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fftChart.Location = new System.Drawing.Point(3, 3);
-            this.fftChart.Name = "fftChart";
-            this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fftChart.Size = new System.Drawing.Size(1144, 493);
-            this.fftChart.TabIndex = 0;
-            this.fftChart.Text = "plotView1";
-            this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.fftChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.fftChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,7 +253,7 @@
             this.fourierTab.ResumeLayout(false);
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -256,9 +272,9 @@
         private System.Windows.Forms.ComboBox windowCombobox;
         private System.Windows.Forms.TableLayoutPanel subLayout;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private OxyPlot.WindowsForms.PlotView waveChart;
         private OxyPlot.WindowsForms.PlotView fftChart;
+        private PowerNumericUpDown frameLengthNumeric;
     }
 }
 
