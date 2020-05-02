@@ -29,21 +29,9 @@ namespace audio_spectral_analyser
             filenameLabel.Text = dialog.FileName;
 
             Cursor = Cursors.WaitCursor;
-            waveChartControls = new WaveChartControls(waveChart, dialog.FileName);
-            waveChartControls.PlotFFT(fftChart);
+            waveChartControls = new WaveChartControls(dialog.FileName);
+            waveChartControls.PlotWave(waveChart);
             Cursor = Cursors.Default;
-        }
-
-        private void zoomInButton_Click(object sender, EventArgs e)
-        {
-            if (waveChartControls != null)
-                waveChartControls.ZoomIn();
-        }
-
-        private void zoomOutButton_Click(object sender, EventArgs e)
-        {
-            if (waveChartControls != null)
-                waveChartControls.ZoomOut();
         }
     }
 }

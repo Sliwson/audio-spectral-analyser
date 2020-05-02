@@ -30,11 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.filenameLabel = new System.Windows.Forms.Label();
-            this.waveChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.fourierTab = new System.Windows.Forms.TabPage();
             this.fftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -44,20 +42,16 @@
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.zoomTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.zoomInButton = new System.Windows.Forms.Button();
-            this.zoomOutButton = new System.Windows.Forms.Button();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.waveChart)).BeginInit();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fftChart)).BeginInit();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.zoomTableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -66,11 +60,10 @@
             this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mainLayout.Controls.Add(this.filenameLabel, 0, 0);
-            this.mainLayout.Controls.Add(this.waveChart, 0, 1);
             this.mainLayout.Controls.Add(this.tabControl, 0, 3);
             this.mainLayout.Controls.Add(this.windowCombobox, 1, 2);
             this.mainLayout.Controls.Add(this.subLayout, 0, 2);
-            this.mainLayout.Controls.Add(this.zoomTableLayout, 1, 0);
+            this.mainLayout.Controls.Add(this.waveChart, 0, 1);
             this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayout.Location = new System.Drawing.Point(10, 10);
             this.mainLayout.Name = "mainLayout";
@@ -91,18 +84,6 @@
             this.filenameLabel.Size = new System.Drawing.Size(576, 30);
             this.filenameLabel.TabIndex = 0;
             this.filenameLabel.Text = "No file loaded...";
-            // 
-            // waveChart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.waveChart.ChartAreas.Add(chartArea1);
-            this.mainLayout.SetColumnSpan(this.waveChart, 2);
-            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.waveChart.Location = new System.Drawing.Point(3, 33);
-            this.waveChart.Name = "waveChart";
-            this.waveChart.Size = new System.Drawing.Size(1158, 144);
-            this.waveChart.TabIndex = 1;
-            this.waveChart.Text = "waveChart";
             // 
             // tabControl
             // 
@@ -130,8 +111,8 @@
             // 
             // fftChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.fftChart.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.fftChart.ChartAreas.Add(chartArea1);
             this.fftChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fftChart.Location = new System.Drawing.Point(3, 3);
             this.fftChart.Name = "fftChart";
@@ -205,46 +186,6 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 1;
             // 
-            // zoomTableLayout
-            // 
-            this.zoomTableLayout.ColumnCount = 3;
-            this.zoomTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.zoomTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.zoomTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.zoomTableLayout.Controls.Add(this.zoomInButton, 1, 0);
-            this.zoomTableLayout.Controls.Add(this.zoomOutButton, 2, 0);
-            this.zoomTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zoomTableLayout.Location = new System.Drawing.Point(585, 3);
-            this.zoomTableLayout.Name = "zoomTableLayout";
-            this.zoomTableLayout.RowCount = 1;
-            this.zoomTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.zoomTableLayout.Size = new System.Drawing.Size(576, 24);
-            this.zoomTableLayout.TabIndex = 5;
-            // 
-            // zoomInButton
-            // 
-            this.zoomInButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zoomInButton.Location = new System.Drawing.Point(397, 1);
-            this.zoomInButton.Margin = new System.Windows.Forms.Padding(1);
-            this.zoomInButton.Name = "zoomInButton";
-            this.zoomInButton.Size = new System.Drawing.Size(88, 22);
-            this.zoomInButton.TabIndex = 0;
-            this.zoomInButton.Text = "Zoom in";
-            this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
-            // 
-            // zoomOutButton
-            // 
-            this.zoomOutButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zoomOutButton.Location = new System.Drawing.Point(487, 1);
-            this.zoomOutButton.Margin = new System.Windows.Forms.Padding(1);
-            this.zoomOutButton.Name = "zoomOutButton";
-            this.zoomOutButton.Size = new System.Drawing.Size(88, 22);
-            this.zoomOutButton.TabIndex = 1;
-            this.zoomOutButton.Text = "Zoom out";
-            this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
-            // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
@@ -263,6 +204,20 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
+            // waveChart
+            // 
+            this.waveChart.BackColor = System.Drawing.Color.White;
+            this.mainLayout.SetColumnSpan(this.waveChart, 2);
+            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.waveChart.Location = new System.Drawing.Point(3, 33);
+            this.waveChart.Name = "waveChart";
+            this.waveChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.waveChart.Size = new System.Drawing.Size(1158, 144);
+            this.waveChart.TabIndex = 6;
+            this.waveChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,14 +231,12 @@
             this.Text = "Audio spectral analyser";
             this.mainLayout.ResumeLayout(false);
             this.mainLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.waveChart)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.fourierTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fftChart)).EndInit();
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.zoomTableLayout.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,7 +248,6 @@
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.Label filenameLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart waveChart;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage fourierTab;
         private System.Windows.Forms.TabPage spectrumTab;
@@ -304,10 +256,8 @@
         private System.Windows.Forms.TableLayoutPanel subLayout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TableLayoutPanel zoomTableLayout;
-        private System.Windows.Forms.Button zoomInButton;
-        private System.Windows.Forms.Button zoomOutButton;
         private System.Windows.Forms.DataVisualization.Charting.Chart fftChart;
+        private OxyPlot.WindowsForms.PlotView waveChart;
     }
 }
 
