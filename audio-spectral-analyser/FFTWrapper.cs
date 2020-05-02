@@ -1,51 +1,59 @@
-﻿using System;
+﻿using MathNet.Numerics;
+using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
-using NAudio.Dsp;
 using System.Threading.Tasks;
 
 namespace audio_spectral_analyser
 {
     class FFTWrapper
     {
+        Complex[] data = null;
 
-        private Complex[] buffer;
-        private int position;
-        private int length;
-        private int m;
-
-        public FFTWrapper(int fftLength)
+        public FFTWrapper(Complex[] series)
         {
-            this.m = (int)Math.Log(fftLength, 2.0);
-            length = fftLength;
-            this.buffer = new Complex[fftLength];
+            data = series;
         }
 
-        public void Add(float value)
+        public static Complex[] ConvertToFourierSeries(List<DataPoint> data)
         {
-            buffer[position].X = value; //(float)(value * FastFourierTransform.HammingWindow(position, length));
-            buffer[position].Y = 0; // This is always zero with audio.
-            position++;
-            if (position >= length)
-            {
-                position = 0;
-                FastFourierTransform.FFT(true, m, buffer);
-            }
+            var length = data.Count;
+            var lengthPow = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
+            var array = data.Select(d => new Complex(d.Y, 0)).ToArray();
+            Array.Resize(ref array, lengthPow);
+            return array;
         }
 
-        public List<float> GetSeries()
+        public double[] Calculate(WindowType windowType)
         {
-            var series = new List<float>();
-            FastFourierTransform.FFT(true, m, buffer);
-            for(int i = 0; i < length / 2 ; i++)
-            {
-                var c = buffer[i];
-                var mag = Math.Sqrt(c.X * c.X + c.Y * c.Y);
-                series.Add((float)(20 * Math.Log10(mag)));
-            }
+            var length = data.Length;
+            var window = GetWindow(windowType, length);
+            var scaledData = new Complex[length];
+            for (int i = 0; i < data.Length; i++)
+                scaledData[i] = data[i] * window[i];
 
-            return series;
+            MathNet.Numerics.IntegralTransforms.Fourier.Forward(scaledData, MathNet.Numerics.IntegralTransforms.FourierOptions.Matlab);
+            return scaledData.Select(d => d.Magnitude).ToArray();
+        }
+
+        private double[] GetWindow(WindowType type, int width)
+        {
+            switch (type)
+            {
+                case WindowType.Rectangle:
+                    var window = new double[width];
+                    window.Fill(1.0);
+                    return window;
+                case WindowType.Hamming:
+                    return Window.Hamming(width);
+                case WindowType.Hann:
+                    return Window.Hann(width);
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

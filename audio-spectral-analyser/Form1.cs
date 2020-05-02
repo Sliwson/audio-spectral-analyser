@@ -17,6 +17,7 @@ namespace audio_spectral_analyser
         public Form1()
         {
             InitializeComponent();
+            windowCombobox.SelectedIndex = 0;
         }
 
         private void OpenFileClick(object sender, EventArgs e)
@@ -31,7 +32,19 @@ namespace audio_spectral_analyser
             Cursor = Cursors.WaitCursor;
             waveChartControls = new WaveChartControls(dialog.FileName);
             waveChartControls.PlotWave(waveChart);
+            RedrawFft();
             Cursor = Cursors.Default;
+        }
+
+        private void RedrawFft()
+        {
+            if (waveChartControls != null)
+                waveChartControls.PlotFFT(fftChart, WindowTypeExtension.FromInt(windowCombobox.SelectedIndex));
+        }
+
+        private void OnWindowSelectedIndexChanged(object sender, EventArgs e)
+        {
+            RedrawFft();
         }
     }
 }

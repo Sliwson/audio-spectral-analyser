@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OxyPlot;
+using OxyPlot.WindowsForms;
 using OxyPlot.Series;
 
 namespace audio_spectral_analyser
@@ -46,18 +47,19 @@ namespace audio_spectral_analyser
             return rawSeries;
         }
 
-        public void PlotWave(OxyPlot.WindowsForms.PlotView view)
+        public void PlotWave(PlotView view)
         {
-            var mainModel = new PlotModel { };
+            var model = new PlotModel { };
 
-            mainModel.Axes.Add(new OxyPlot.Axes.LinearAxis
+            model.Axes.Add(new OxyPlot.Axes.LinearAxis
             {
                 Minimum = -1.0,
                 Maximum = 1.0,
                 MajorStep = 0.5,
+                Title = "Amplitude",
             });
 
-            mainModel.Axes.Add(new OxyPlot.Axes.LinearAxis
+            model.Axes.Add(new OxyPlot.Axes.LinearAxis
             {
                 Position = OxyPlot.Axes.AxisPosition.Bottom,
                 Title = "Time (s)",
@@ -68,31 +70,34 @@ namespace audio_spectral_analyser
             foreach (var p in waveList)
                 series.Points.Add(p);
 
-            mainModel.Series.Add(series);
-            view.Model = mainModel;
+            model.Series.Add(series);
+            view.Model = model;
         }
 
-        //public void PlotFFT(Chart fftChart)
-        //{
-        //    fftChart.Series.Clear();
-        //    var series = fftChart.Series.Add("wave");
-        //    series.ChartType = SeriesChartType.FastLine;
-        //    series.ChartArea = "ChartArea1";
+        public void PlotFFT(PlotView view, WindowType windowType)
+        {
+            var model = new PlotModel { };
 
-        //    var length = waveList.Count;
-        //    var count = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
+            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            {
+                Title = "Magnitude"
+            });
 
-        //    var fftWrapper = new FFTWrapper(count);
-        //    foreach (var sample in waveList)
-        //        fftWrapper.Add((float)sample.Item2);
+            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Title = "Frequency (Hz)",
+            }); ;
 
-        //    var result = fftWrapper.GetSeries();
-        //    int i = 0;
-        //    foreach(var f in result)
-        //    {
-        //        series.Points.AddXY(i * sampleRate / count + 1, f);
-        //        i++;
-        //    }
-        //}
+
+            var fft = new FFTWrapper(FFTWrapper.ConvertToFourierSeries(waveList));
+            var result = fft.Calculate(windowType);
+            var series = new FunctionSeries { };
+            for (int i = 0; i < result.Length / 2; i++)
+                series.Points.Add(new DataPoint((double)i * sampleRate / result.Length, 20 * Math.Log10(result[i])));
+
+            model.Series.Add(series);
+            view.Model = model;
+        }
     }
 }
