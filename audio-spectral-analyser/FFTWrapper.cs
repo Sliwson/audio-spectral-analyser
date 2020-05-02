@@ -1,25 +1,27 @@
-﻿using System;
+﻿using MathNet.Numerics;
+using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
-using NAudio.Dsp;
 using System.Threading.Tasks;
 
 namespace audio_spectral_analyser
 {
     class FFTWrapper
     {
-
-        private Complex[] buffer;
-        private int position;
-        private int length;
-        private int m;
-
-        public FFTWrapper(int fftLength)
+        public FFTWrapper(float[] series)
         {
-            this.m = (int)Math.Log(fftLength, 2.0);
-            length = fftLength;
-            this.buffer = new Complex[fftLength];
+        }
+
+        public static Complex[] ConvertToFourierSeries(List<DataPoint> data)
+        {
+            var length = data.Count;
+            var lengthPow = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
+            var array = data.Select(d => new Complex(d.Y, 0)).ToArray();
+            Array.Resize(ref array, lengthPow);
+            return array;
         }
 
         public void Add(float value)
