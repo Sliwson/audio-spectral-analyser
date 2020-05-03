@@ -90,7 +90,7 @@
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Size = new System.Drawing.Size(1164, 678);
+            this.mainLayout.Size = new System.Drawing.Size(1164, 657);
             this.mainLayout.TabIndex = 0;
             // 
             // filenameLabel
@@ -113,7 +113,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 213);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1158, 462);
+            this.tabControl.Size = new System.Drawing.Size(1158, 441);
             this.tabControl.TabIndex = 2;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControlSelectedIndexChanged);
             // 
@@ -123,7 +123,7 @@
             this.fourierTab.Location = new System.Drawing.Point(4, 22);
             this.fourierTab.Name = "fourierTab";
             this.fourierTab.Padding = new System.Windows.Forms.Padding(3);
-            this.fourierTab.Size = new System.Drawing.Size(1150, 436);
+            this.fourierTab.Size = new System.Drawing.Size(1150, 415);
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@
             this.fourierLayout.RowCount = 2;
             this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fourierLayout.Size = new System.Drawing.Size(1144, 430);
+            this.fourierLayout.Size = new System.Drawing.Size(1144, 409);
             this.fourierLayout.TabIndex = 0;
             // 
             // fftChart
@@ -157,7 +157,7 @@
             this.fftChart.Location = new System.Drawing.Point(3, 33);
             this.fftChart.Name = "fftChart";
             this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fftChart.Size = new System.Drawing.Size(1138, 394);
+            this.fftChart.Size = new System.Drawing.Size(1138, 373);
             this.fftChart.TabIndex = 0;
             this.fftChart.Text = "plotView1";
             this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -209,7 +209,7 @@
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
-            this.spectrumTab.Size = new System.Drawing.Size(1150, 457);
+            this.spectrumTab.Size = new System.Drawing.Size(1150, 415);
             this.spectrumTab.TabIndex = 1;
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             this.spectrumLayout.RowCount = 2;
             this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.spectrumLayout.Size = new System.Drawing.Size(1144, 451);
+            this.spectrumLayout.Size = new System.Drawing.Size(1144, 409);
             this.spectrumLayout.TabIndex = 0;
             // 
             // frameOverlapLabel
@@ -277,7 +277,7 @@
             this.spectrumPlot.Location = new System.Drawing.Point(3, 33);
             this.spectrumPlot.Name = "spectrumPlot";
             this.spectrumPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.spectrumPlot.Size = new System.Drawing.Size(1138, 415);
+            this.spectrumPlot.Size = new System.Drawing.Size(1138, 373);
             this.spectrumPlot.TabIndex = 2;
             this.spectrumPlot.Text = "plotView1";
             this.spectrumPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -289,7 +289,7 @@
             this.fundamentalTab.Controls.Add(this.fundamentalLayout);
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 457);
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 415);
             this.fundamentalTab.TabIndex = 2;
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.fundamentalLayout.RowCount = 2;
             this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 457);
+            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 415);
             this.fundamentalLayout.TabIndex = 1;
             // 
             // fundamentalOverlapLabel
@@ -357,7 +357,7 @@
             this.fundamentalPlot.Location = new System.Drawing.Point(3, 33);
             this.fundamentalPlot.Name = "fundamentalPlot";
             this.fundamentalPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 421);
+            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 379);
             this.fundamentalPlot.TabIndex = 2;
             this.fundamentalPlot.Text = "plotView1";
             this.fundamentalPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -465,7 +465,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 698);
+            this.ClientSize = new System.Drawing.Size(1184, 677);
             this.Controls.Add(this.mainLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
