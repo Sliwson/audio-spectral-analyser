@@ -26,7 +26,11 @@ namespace audio_spectral_analyser
         public static Complex[] ConvertToFourierSeries(List<DataPoint> data)
         {
             var length = data.Count;
-            var lengthPow = (int)Math.Pow(2, (int)Math.Log(length, 2) + 1);
+            var pow = (int)Math.Log(length, 2) + 1;
+            if (Math.Pow(2, pow - 1) == length)
+                pow--;
+
+            var lengthPow = (int)Math.Pow(2, pow);
             var array = data.Select(d => new Complex(d.Y, 0)).ToArray();
             Array.Resize(ref array, lengthPow);
             return array;

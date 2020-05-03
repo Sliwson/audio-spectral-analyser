@@ -62,7 +62,8 @@ namespace audio_spectral_analyser
 
             var frameLength = (int)frameLengthNumeric.Value;
             var overlap = (double)overlapNumeric.Value;
-            waveChartControls.PlotSpectogram(spectrumPlot, frameLength, overlap);
+            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
+            waveChartControls.PlotSpectogram(spectrumPlot, type, frameLength, overlap);
         }
 
         private void RedrawFundamentalFrequency()

@@ -8,6 +8,7 @@ using OxyPlot;
 using OxyPlot.WindowsForms;
 using OxyPlot.Series;
 using OxyPlot.Axes;
+using MathNet.Numerics;
 
 namespace audio_spectral_analyser
 {
@@ -96,6 +97,14 @@ namespace audio_spectral_analyser
             return result;
         }
 
+        private DataPoint[] GetSample(int frameLength, int beginPoint)
+        {
+            var minLength = Math.Min(frameLength, waveList.Count - beginPoint);
+            var result = waveList.GetRange(beginPoint, minLength).ToArray();
+            Array.Resize(ref result, frameLength);
+            return result;
+        }
+
         private void FillFFTView(PlotView view, double[] result)
         {
             var model = new PlotModel { };
@@ -119,14 +128,20 @@ namespace audio_spectral_analyser
             view.Model = model;
         }
 
-        public void PlotSpectogram(PlotView view, int frameLength, double overlap)
+        public void PlotSpectogram(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-            var random = new Random();
-            var data = new double[1000, 1000];
-            for (int i = 0; i < 1000; i++)
-                for (int j = 0; j < 1000; j++)
-                    data[i, j] = random.NextDouble();
-
+            var span = (int)Math.Round(frameLength * (1.0 - overlap));
+            int columns = waveList.Count / span;
+            var data = new double[columns, frameLength / 2];
+            for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
+            {
+                var sample = GetSample(frameLength, beginPoint);
+                var fft = new FFTWrapper(sample.ToList());
+                var result = fft.Calculate(windowType);
+                for (int y = 0; y < frameLength / 2; y++)
+                    data[i, y] = 20 * Math.Log10(result[y]);
+            }
+            
             FillSpectogram(view, data);
         }
 
@@ -134,10 +149,7 @@ namespace audio_spectral_analyser
         {
             var model = new PlotModel { };
 
-            model.Axes.Add(new LinearColorAxis
-            {
-                Palette = OxyPalettes.Hue64
-            });
+            model.Axes.Add(new LinearColorAxis { });
 
             model.Axes.Add(new LinearAxis
             {
@@ -147,11 +159,10 @@ namespace audio_spectral_analyser
 
             model.Axes.Add(new LinearAxis
             {
-                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Position = AxisPosition.Bottom,
                 Title = "Time (s)",
             });
 
- 
             var series = new HeatMapSeries
             {
                 X0 = 0,
@@ -159,6 +170,7 @@ namespace audio_spectral_analyser
                 Y0 = 0,
                 Y1 = sampleRate / 2,
                 RenderMethod = HeatMapRenderMethod.Bitmap,
+                Interpolate = true,
                 Data = data
             };
 

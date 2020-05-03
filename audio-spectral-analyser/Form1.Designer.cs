@@ -40,35 +40,35 @@
             this.beginLabel = new System.Windows.Forms.Label();
             this.beginFrameTime = new System.Windows.Forms.NumericUpDown();
             this.spectrumTab = new System.Windows.Forms.TabPage();
-            this.fundamentalTab = new System.Windows.Forms.TabPage();
-            this.windowCombobox = new System.Windows.Forms.ComboBox();
-            this.subLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.waveChart = new OxyPlot.WindowsForms.PlotView();
-            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.spectrumLayout = new System.Windows.Forms.TableLayoutPanel();
             this.frameOverlapLabel = new System.Windows.Forms.Label();
             this.overlapNumeric = new System.Windows.Forms.NumericUpDown();
             this.spectrumPlot = new OxyPlot.WindowsForms.PlotView();
+            this.fundamentalTab = new System.Windows.Forms.TabPage();
             this.fundamentalLayout = new System.Windows.Forms.TableLayoutPanel();
             this.fundamentalOverlapLabel = new System.Windows.Forms.Label();
             this.fundamentalOverlap = new System.Windows.Forms.NumericUpDown();
             this.fundamentalPlot = new OxyPlot.WindowsForms.PlotView();
+            this.windowCombobox = new System.Windows.Forms.ComboBox();
+            this.subLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
+            this.waveChart = new OxyPlot.WindowsForms.PlotView();
+            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
             this.fourierLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).BeginInit();
             this.spectrumTab.SuspendLayout();
-            this.fundamentalTab.SuspendLayout();
-            this.subLayout.SuspendLayout();
             this.spectrumLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).BeginInit();
+            this.fundamentalTab.SuspendLayout();
             this.fundamentalLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).BeginInit();
+            this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,89 +214,6 @@
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
             // 
-            // fundamentalTab
-            // 
-            this.fundamentalTab.Controls.Add(this.fundamentalLayout);
-            this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
-            this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 205);
-            this.fundamentalTab.TabIndex = 2;
-            this.fundamentalTab.Text = "Fundamental frequency";
-            this.fundamentalTab.UseVisualStyleBackColor = true;
-            // 
-            // windowCombobox
-            // 
-            this.windowCombobox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.windowCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.windowCombobox.FormattingEnabled = true;
-            this.windowCombobox.Items.AddRange(new object[] {
-            "Rectangle window",
-            "Hamming window",
-            "van Hann window"});
-            this.windowCombobox.Location = new System.Drawing.Point(585, 183);
-            this.windowCombobox.Name = "windowCombobox";
-            this.windowCombobox.Size = new System.Drawing.Size(180, 21);
-            this.windowCombobox.TabIndex = 3;
-            this.windowCombobox.SelectedIndexChanged += new System.EventHandler(this.OnWindowSelectedIndexChanged);
-            // 
-            // subLayout
-            // 
-            this.subLayout.ColumnCount = 2;
-            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.subLayout.Controls.Add(this.label1, 0, 0);
-            this.subLayout.Controls.Add(this.frameLengthNumeric, 1, 0);
-            this.subLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.subLayout.Location = new System.Drawing.Point(3, 183);
-            this.subLayout.Name = "subLayout";
-            this.subLayout.RowCount = 1;
-            this.subLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.subLayout.Size = new System.Drawing.Size(576, 24);
-            this.subLayout.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Frame length:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // waveChart
-            // 
-            this.waveChart.BackColor = System.Drawing.Color.White;
-            this.mainLayout.SetColumnSpan(this.waveChart, 2);
-            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.waveChart.Location = new System.Drawing.Point(3, 33);
-            this.waveChart.Name = "waveChart";
-            this.waveChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.waveChart.Size = new System.Drawing.Size(1158, 144);
-            this.waveChart.TabIndex = 6;
-            this.waveChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // mainMenu1
-            // 
-            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem1});
-            // 
-            // menuItem1
-            // 
-            this.menuItem1.Index = 0;
-            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem2});
-            this.menuItem1.Text = "File";
-            // 
-            // menuItem2
-            // 
-            this.menuItem2.Index = 0;
-            this.menuItem2.Text = "Open";
-            this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
-            // 
             // spectrumLayout
             // 
             this.spectrumLayout.ColumnCount = 3;
@@ -338,10 +255,10 @@
             this.overlapNumeric.Location = new System.Drawing.Point(103, 6);
             this.overlapNumeric.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.overlapNumeric.Maximum = new decimal(new int[] {
-            1,
+            9,
             0,
             0,
-            0});
+            65536});
             this.overlapNumeric.Name = "overlapNumeric";
             this.overlapNumeric.Size = new System.Drawing.Size(94, 20);
             this.overlapNumeric.TabIndex = 1;
@@ -366,6 +283,16 @@
             this.spectrumPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.spectrumPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.spectrumPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // fundamentalTab
+            // 
+            this.fundamentalTab.Controls.Add(this.fundamentalLayout);
+            this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
+            this.fundamentalTab.Name = "fundamentalTab";
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 205);
+            this.fundamentalTab.TabIndex = 2;
+            this.fundamentalTab.Text = "Fundamental frequency";
+            this.fundamentalTab.UseVisualStyleBackColor = true;
             // 
             // fundamentalLayout
             // 
@@ -437,6 +364,47 @@
             this.fundamentalPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.fundamentalPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
+            // windowCombobox
+            // 
+            this.windowCombobox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.windowCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.windowCombobox.FormattingEnabled = true;
+            this.windowCombobox.Items.AddRange(new object[] {
+            "Rectangle window",
+            "Hamming window",
+            "van Hann window"});
+            this.windowCombobox.Location = new System.Drawing.Point(585, 183);
+            this.windowCombobox.Name = "windowCombobox";
+            this.windowCombobox.Size = new System.Drawing.Size(180, 21);
+            this.windowCombobox.TabIndex = 3;
+            this.windowCombobox.SelectedIndexChanged += new System.EventHandler(this.OnWindowSelectedIndexChanged);
+            // 
+            // subLayout
+            // 
+            this.subLayout.ColumnCount = 2;
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.subLayout.Controls.Add(this.label1, 0, 0);
+            this.subLayout.Controls.Add(this.frameLengthNumeric, 1, 0);
+            this.subLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.subLayout.Location = new System.Drawing.Point(3, 183);
+            this.subLayout.Name = "subLayout";
+            this.subLayout.RowCount = 1;
+            this.subLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.subLayout.Size = new System.Drawing.Size(576, 24);
+            this.subLayout.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Frame length:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frameLengthNumeric
             // 
             this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
@@ -461,6 +429,38 @@
             0});
             this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
+            // waveChart
+            // 
+            this.waveChart.BackColor = System.Drawing.Color.White;
+            this.mainLayout.SetColumnSpan(this.waveChart, 2);
+            this.waveChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.waveChart.Location = new System.Drawing.Point(3, 33);
+            this.waveChart.Name = "waveChart";
+            this.waveChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.waveChart.Size = new System.Drawing.Size(1158, 144);
+            this.waveChart.TabIndex = 6;
+            this.waveChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.waveChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.waveChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem2});
+            this.menuItem1.Text = "File";
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 0;
+            this.menuItem2.Text = "Open";
+            this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,15 +480,15 @@
             this.fourierLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).EndInit();
             this.spectrumTab.ResumeLayout(false);
-            this.fundamentalTab.ResumeLayout(false);
-            this.subLayout.ResumeLayout(false);
-            this.subLayout.PerformLayout();
             this.spectrumLayout.ResumeLayout(false);
             this.spectrumLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).EndInit();
+            this.fundamentalTab.ResumeLayout(false);
             this.fundamentalLayout.ResumeLayout(false);
             this.fundamentalLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).EndInit();
+            this.subLayout.ResumeLayout(false);
+            this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
             this.ResumeLayout(false);
 
