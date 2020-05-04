@@ -109,14 +109,14 @@ namespace audio_spectral_analyser
         {
             var model = new PlotModel { };
 
-            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            model.Axes.Add(new LinearAxis
             {
                 Title = "Amplitude (dB)"
             });
 
-            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            model.Axes.Add(new LinearAxis
             {
-                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Position = AxisPosition.Bottom,
                 Title = "Frequency (Hz)",
             });
 
@@ -176,6 +176,39 @@ namespace audio_spectral_analyser
 
             model.Series.Add(series);
             view.Model = model;
+        }
+
+        public void PlotFundamentalFrequency(PlotView view, WindowType windowType, int frameLenght, double overlap)
+        {
+            var result = new double[100];
+            for (int i = 0; i < 100; i++)
+                result[i] = (double)i / 25.0;
+
+            FillFundamentalPlot(view, result);
+        }
+
+        private void FillFundamentalPlot(PlotView view, double[] result)
+        {
+            var model = new PlotModel { };
+
+            model.Axes.Add(new LinearAxis
+            {
+                Title = "Frequency (Hz)",
+            });
+
+            model.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Time (s)"
+            });
+
+            var series = new FunctionSeries { };
+            for (int i = 0; i < result.Length; i++)
+                series.Points.Add(new DataPoint((double)i * length.TotalSeconds / result.Length, result[i]));
+
+            model.Series.Add(series);
+            view.Model = model;
+
         }
     }
 }

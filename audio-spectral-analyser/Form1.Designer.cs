@@ -52,11 +52,11 @@
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
@@ -405,6 +405,30 @@
             this.label1.Text = "Frame length:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // frameLengthNumeric
+            // 
+            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
+            this.frameLengthNumeric.Maximum = new decimal(new int[] {
+            16384,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Name = "frameLengthNumeric";
+            this.frameLengthNumeric.ReadOnly = true;
+            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
+            this.frameLengthNumeric.TabIndex = 1;
+            this.frameLengthNumeric.Value = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
+            // 
             // waveChart
             // 
             this.waveChart.BackColor = System.Drawing.Color.White;
@@ -436,30 +460,6 @@
             this.menuItem2.Index = 0;
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
-            // 
-            // frameLengthNumeric
-            // 
-            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
-            this.frameLengthNumeric.Maximum = new decimal(new int[] {
-            16384,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Name = "frameLengthNumeric";
-            this.frameLengthNumeric.ReadOnly = true;
-            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
-            this.frameLengthNumeric.TabIndex = 1;
-            this.frameLengthNumeric.Value = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
             // Form1
             // 

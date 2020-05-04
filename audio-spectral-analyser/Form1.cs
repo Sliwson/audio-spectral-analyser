@@ -73,6 +73,8 @@ namespace audio_spectral_analyser
             
             var frameLength = (int)frameLengthNumeric.Value;
             var overlap = (double)fundamentalOverlap.Value;
+            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
+            waveChartControls.PlotFundamentalFrequency(fundamentalPlot, type, frameLength, overlap);
         }
 
         #region Redraw bindings
