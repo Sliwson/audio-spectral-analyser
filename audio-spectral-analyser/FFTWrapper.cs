@@ -1,6 +1,7 @@
 ﻿using MathNet.Numerics;
 using OxyPlot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -15,7 +16,18 @@ namespace audio_spectral_analyser
 
         public FFTWrapper(List<DataPoint> series)
         {
-            data = ConvertToFourierSeries(series);
+            if (IsPowerOfTwo(series.Count))
+                data = ConvertToFourierArray(series);
+            else
+                data = ResizeToPowerOfTwo(series);
+        }
+
+        public FFTWrapper(DataPoint[] series)
+        {
+            if (IsPowerOfTwo(series.Length))
+                data = ConvertToFourierArray(series);
+            else
+                data = ResizeToPowerOfTwo(series.ToList());
         }
 
         public FFTWrapper(Complex[] series)
@@ -23,20 +35,23 @@ namespace audio_spectral_analyser
             data = series;
         }
 
-        public static Complex[] ConvertToFourierSeries(List<DataPoint> data)
+        public static Complex[] ResizeToPowerOfTwo(List<DataPoint> data)
         {
             var length = data.Count;
             var pow = (int)Math.Log(length, 2) + 1;
-            if (Math.Pow(2, pow - 1) == length)
-                pow--;
-
             var lengthPow = (int)Math.Pow(2, pow);
             var array = data.Select(d => new Complex(d.Y, 0)).ToArray();
             Array.Resize(ref array, lengthPow);
             return array;
         }
 
-        public double[] Calculate(WindowType windowType)
+        public double[] CalculateMagnitude(WindowType windowType, bool forward = true)
+        {
+            var result = Calculate(windowType, forward);
+            return result.Select(d => d.Magnitude).ToArray();
+        }
+
+        public Complex[] Calculate(WindowType windowType, bool forward = true)
         {
             var length = data.Length;
             var window = GetWindow(windowType, length);
@@ -44,8 +59,12 @@ namespace audio_spectral_analyser
             for (int i = 0; i < data.Length; i++)
                 scaledData[i] = data[i] * window[i];
 
-            MathNet.Numerics.IntegralTransforms.Fourier.Forward(scaledData, MathNet.Numerics.IntegralTransforms.FourierOptions.Matlab);
-            return scaledData.Select(d => d.Magnitude).ToArray();
+            if (forward)
+                MathNet.Numerics.IntegralTransforms.Fourier.Forward(scaledData);
+            else
+                MathNet.Numerics.IntegralTransforms.Fourier.Inverse(scaledData);
+
+            return scaledData;
         }
 
         private double[] GetWindow(WindowType type, int width)
@@ -63,6 +82,16 @@ namespace audio_spectral_analyser
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private Complex[] ConvertToFourierArray(IEnumerable<DataPoint> ie)
+        {
+            return ie.Select(d => new Complex(d.Y, 0)).ToArray();
+        }
+
+        bool IsPowerOfTwo(int x)
+        {
+            return (x & (x - 1)) == 0;
         }
     }
 }

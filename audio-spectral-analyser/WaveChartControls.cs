@@ -9,6 +9,7 @@ using OxyPlot.WindowsForms;
 using OxyPlot.Series;
 using OxyPlot.Axes;
 using MathNet.Numerics;
+using System.Numerics;
 
 namespace audio_spectral_analyser
 {
@@ -78,7 +79,7 @@ namespace audio_spectral_analyser
         public void PlotFFTFull(PlotView view, WindowType windowType)
         {
             var fft = new FFTWrapper(waveList);
-            var result = fft.Calculate(windowType);
+            var result = fft.CalculateMagnitude(windowType);
             FillFFTView(view, result);
         }
 
@@ -86,7 +87,7 @@ namespace audio_spectral_analyser
         {
             var result = GetSample(frameLength, beginTime).ToList();
             var fft = new FFTWrapper(result);
-            var calculated = fft.Calculate(type);
+            var calculated = fft.CalculateMagnitude(type);
             FillFFTView(view, calculated);
         }
 
@@ -136,8 +137,8 @@ namespace audio_spectral_analyser
             for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
             {
                 var sample = GetSample(frameLength, beginPoint);
-                var fft = new FFTWrapper(sample.ToList());
-                var result = fft.Calculate(windowType);
+                var fft = new FFTWrapper(sample);
+                var result = fft.CalculateMagnitude(windowType);
                 for (int y = 0; y < frameLength / 2; y++)
                     data[i, y] = 20 * Math.Log10(result[y]);
             }
@@ -178,13 +179,28 @@ namespace audio_spectral_analyser
             view.Model = model;
         }
 
-        public void PlotFundamentalFrequency(PlotView view, WindowType windowType, int frameLenght, double overlap)
-        {
-            var result = new double[100];
-            for (int i = 0; i < 100; i++)
-                result[i] = (double)i / 25.0;
+        public void PlotFundamentalFrequency(PlotView view, WindowType windowType, int frameLength, double overlap)
+        { 
+            var span = (int)Math.Round(frameLength * (1.0 - overlap));
+            int columns = waveList.Count / span;
+            var data = new double[columns];
+            var begin = 2 * 50 * frameLength / sampleRate;
+            var end = 2 * 400 * frameLength / sampleRate;
 
-            FillFundamentalPlot(view, result);
+            for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
+            {
+                var sample = GetSample(frameLength, beginPoint);
+                var fft = new FFTWrapper(sample);
+                var forward = fft.CalculateMagnitude(windowType);
+                var inverse = new FFTWrapper(forward.Select(d => new Complex(Math.Log10(Math.Abs(d)), 0)).ToArray());
+                var result = inverse.Calculate(windowType, false).Select(d => d.Real);
+                var resultSnip = result.Skip(begin).Take(end - begin).ToList();
+                var max = resultSnip.IndexOf(resultSnip.Max());
+                var realIdx = max + begin;
+                data[i] = realIdx * sampleRate / (2 * frameLength);
+            }
+
+            FillFundamentalPlot(view, data);
         }
 
         private void FillFundamentalPlot(PlotView view, double[] result)

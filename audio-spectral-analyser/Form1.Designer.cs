@@ -52,11 +52,11 @@
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
@@ -90,7 +90,7 @@
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Size = new System.Drawing.Size(1164, 657);
+            this.mainLayout.Size = new System.Drawing.Size(1164, 541);
             this.mainLayout.TabIndex = 0;
             // 
             // filenameLabel
@@ -113,7 +113,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 213);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1158, 441);
+            this.tabControl.Size = new System.Drawing.Size(1158, 325);
             this.tabControl.TabIndex = 2;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControlSelectedIndexChanged);
             // 
@@ -123,7 +123,7 @@
             this.fourierTab.Location = new System.Drawing.Point(4, 22);
             this.fourierTab.Name = "fourierTab";
             this.fourierTab.Padding = new System.Windows.Forms.Padding(3);
-            this.fourierTab.Size = new System.Drawing.Size(1150, 415);
+            this.fourierTab.Size = new System.Drawing.Size(1150, 299);
             this.fourierTab.TabIndex = 0;
             this.fourierTab.Text = "Fourier Transform";
             this.fourierTab.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@
             this.fourierLayout.RowCount = 2;
             this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.fourierLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fourierLayout.Size = new System.Drawing.Size(1144, 409);
+            this.fourierLayout.Size = new System.Drawing.Size(1144, 293);
             this.fourierLayout.TabIndex = 0;
             // 
             // fftChart
@@ -157,7 +157,7 @@
             this.fftChart.Location = new System.Drawing.Point(3, 33);
             this.fftChart.Name = "fftChart";
             this.fftChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fftChart.Size = new System.Drawing.Size(1138, 373);
+            this.fftChart.Size = new System.Drawing.Size(1138, 257);
             this.fftChart.TabIndex = 0;
             this.fftChart.Text = "plotView1";
             this.fftChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -209,7 +209,7 @@
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
-            this.spectrumTab.Size = new System.Drawing.Size(1150, 415);
+            this.spectrumTab.Size = new System.Drawing.Size(1150, 299);
             this.spectrumTab.TabIndex = 1;
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             this.spectrumLayout.RowCount = 2;
             this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.spectrumLayout.Size = new System.Drawing.Size(1144, 409);
+            this.spectrumLayout.Size = new System.Drawing.Size(1144, 293);
             this.spectrumLayout.TabIndex = 0;
             // 
             // frameOverlapLabel
@@ -277,7 +277,7 @@
             this.spectrumPlot.Location = new System.Drawing.Point(3, 33);
             this.spectrumPlot.Name = "spectrumPlot";
             this.spectrumPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.spectrumPlot.Size = new System.Drawing.Size(1138, 373);
+            this.spectrumPlot.Size = new System.Drawing.Size(1138, 257);
             this.spectrumPlot.TabIndex = 2;
             this.spectrumPlot.Text = "plotView1";
             this.spectrumPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -289,7 +289,7 @@
             this.fundamentalTab.Controls.Add(this.fundamentalLayout);
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
-            this.fundamentalTab.Size = new System.Drawing.Size(1150, 415);
+            this.fundamentalTab.Size = new System.Drawing.Size(1150, 299);
             this.fundamentalTab.TabIndex = 2;
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.fundamentalLayout.RowCount = 2;
             this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 415);
+            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 299);
             this.fundamentalLayout.TabIndex = 1;
             // 
             // fundamentalOverlapLabel
@@ -335,10 +335,10 @@
             this.fundamentalOverlap.Location = new System.Drawing.Point(103, 6);
             this.fundamentalOverlap.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.fundamentalOverlap.Maximum = new decimal(new int[] {
-            1,
+            8,
             0,
             0,
-            0});
+            65536});
             this.fundamentalOverlap.Name = "fundamentalOverlap";
             this.fundamentalOverlap.Size = new System.Drawing.Size(94, 20);
             this.fundamentalOverlap.TabIndex = 1;
@@ -357,7 +357,7 @@
             this.fundamentalPlot.Location = new System.Drawing.Point(3, 33);
             this.fundamentalPlot.Name = "fundamentalPlot";
             this.fundamentalPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 379);
+            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 263);
             this.fundamentalPlot.TabIndex = 2;
             this.fundamentalPlot.Text = "plotView1";
             this.fundamentalPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -405,30 +405,6 @@
             this.label1.Text = "Frame length:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frameLengthNumeric
-            // 
-            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
-            this.frameLengthNumeric.Maximum = new decimal(new int[] {
-            16384,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Name = "frameLengthNumeric";
-            this.frameLengthNumeric.ReadOnly = true;
-            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
-            this.frameLengthNumeric.TabIndex = 1;
-            this.frameLengthNumeric.Value = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
-            // 
             // waveChart
             // 
             this.waveChart.BackColor = System.Drawing.Color.White;
@@ -461,11 +437,35 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
+            // frameLengthNumeric
+            // 
+            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
+            this.frameLengthNumeric.Maximum = new decimal(new int[] {
+            16384,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Name = "frameLengthNumeric";
+            this.frameLengthNumeric.ReadOnly = true;
+            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
+            this.frameLengthNumeric.TabIndex = 1;
+            this.frameLengthNumeric.Value = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 677);
+            this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.mainLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
