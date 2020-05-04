@@ -182,17 +182,22 @@ namespace audio_spectral_analyser
         public void PlotFundamentalFrequency(PlotView view, WindowType windowType, int frameLength, double overlap)
         { 
             var span = (int)Math.Round(frameLength * (1.0 - overlap));
-            int columns = waveList.Count / span;
+            var columns = waveList.Count / span;
             var data = new double[columns];
             var begin = 2 * 50 * frameLength / sampleRate;
             var end = 2 * 400 * frameLength / sampleRate;
+            if (begin == end)
+            {
+                FillFundamentalPlot(view, data);
+                return;
+            }
 
             for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
             {
                 var sample = GetSample(frameLength, beginPoint);
                 var fft = new FFTWrapper(sample);
                 var forward = fft.CalculateMagnitude(windowType);
-                var inverse = new FFTWrapper(forward.Select(d => new Complex(Math.Log10(Math.Abs(d)), 0)).ToArray());
+                var inverse = new FFTWrapper(forward.Select(d => new Complex(Math.Log10(d), 0)).ToArray());
                 var result = inverse.Calculate(windowType, false).Select(d => d.Real);
                 var resultSnip = result.Skip(begin).Take(end - begin).ToList();
                 var max = resultSnip.IndexOf(resultSnip.Max());
