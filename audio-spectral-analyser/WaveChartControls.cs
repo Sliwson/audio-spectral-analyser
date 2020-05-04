@@ -224,7 +224,6 @@ namespace audio_spectral_analyser
 
             model.Series.Add(series);
             view.Model = model;
-
         }
     }
 }
