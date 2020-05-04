@@ -446,7 +446,7 @@
             0,
             0});
             this.frameLengthNumeric.Minimum = new decimal(new int[] {
-            2,
+            64,
             0,
             0,
             0});
