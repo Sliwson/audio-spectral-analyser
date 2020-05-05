@@ -44,8 +44,10 @@ Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \tex
 
 Do wczytywania plików audio użyłem biblioteki \textit{NAudio}. Bez problemu umożliwia ona ładowanie przebiegu audio oraz informacji o ścieżce takich jak długość, czy sample rate. Do rysowania wykresów użyłem, w przeciwieństwie do poprzedniego projektu, biblioteki \textit{OxyPlot}, która okazała się dużo bardziej komfortowa w użyciu oraz małym nakładem pracy zapełniła podstawowe funkcjonalnosci takie jak przybliżanie i oddalanie wykresu, przesuwanie, dodawanie etykiet osi. Na początku do obliczania FFT używałem funkcji zaimplementowanych w bibliotece \textit{NUnit}, jednak ze względu na niezadowalające rezultaty zmieniłem ją na \textit{MathNet.Numerics}. Dostarczyła mi ona funkcjonalności wystarczające do obliczania FFT, odwrotnej FFT oraz stosowania okien.
 
-\section{Implementacja}
-\subsection{Fourier transform}
+\section{Zaimplementowane metody}
+\subsection{Transformata Fouriera}
+
+Transformata Fouriera pozwala na przejście z dziedziny czasu na dziedzinę częstotliwości dla sygnału audio. Jako, że cyfrowy sygnał audio opisany jest funkcją dyskretną, należy użyć Dyskretnej Transformaty Fouriera. Jej naiwna implementacja ma złożoność $O(N^2)$, zatem w praktycznych zastosowaniach korzysta się z \textit{Fast Fourier Transform}, czyli szybkiej transformacji Fouriera, której złożoność jest równa $O(Nlog_2N)$ co pozwala nawet na analizę sygnałów w czasie rzeczywistym. FFT jako argument przyjmuje ramkę o długości $2^N$ i zwraca wartości w przekształconej dziedzinie. W implementacji należało zadbać, aby funkcja obliczająca FFT zawsze otrzymała tablicę o odpowiedniej długości, prawidłowy podział sygnału na ramki oraz skalowanie osi na wykresie. Warto zwrócić uwagę, na fakt iż na wykresie należy wyświetlić połowę wynikowej tablicy, co odpowiada częstotliwościom od zera do połowy częstotliwości próbkowania. Fakt ten wynika z własności częstotliwości Nyquista.
 
 \section{Wyniki działania programu}
 
