@@ -36,7 +36,7 @@ Kolejną funkcjonalnością, którą była wymagana było rysowanie spektogramu 
 
 Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \textit{WinForms}. Całość zacząłem od zaprojektowania wyglądu interfejsu użytkownika.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{scr1.png}
 \caption{Interfejs użytkownika}
 \label{fig:interface}
@@ -46,10 +46,19 @@ Do wczytywania plików audio użyłem biblioteki \textit{NAudio}. Bez problemu u
 
 \section{Zaimplementowane metody}
 \subsection{Transformata Fouriera}
+\label{subsection:FFT}
 
 Transformata Fouriera pozwala na przejście z dziedziny czasu na dziedzinę częstotliwości dla sygnału audio. Jako, że cyfrowy sygnał audio opisany jest funkcją dyskretną, należy użyć Dyskretnej Transformaty Fouriera. Jej naiwna implementacja ma złożoność $O(N^2)$, zatem w praktycznych zastosowaniach korzysta się z \textit{Fast Fourier Transform}, czyli szybkiej transformacji Fouriera, której złożoność jest równa $O(Nlog_2N)$ co pozwala nawet na analizę sygnałów w czasie rzeczywistym. FFT jako argument przyjmuje ramkę o długości $2^N$ i zwraca wartości w przekształconej dziedzinie. W implementacji należało zadbać, aby funkcja obliczająca FFT zawsze otrzymała tablicę o odpowiedniej długości, prawidłowy podział sygnału na ramki oraz skalowanie osi na wykresie. Warto zwrócić uwagę, na fakt iż na wykresie należy wyświetlić połowę wynikowej tablicy, co odpowiada częstotliwościom od zera do połowy częstotliwości próbkowania. Fakt ten wynika z własności częstotliwości Nyquista.
+\\
+
+Próbki FFT mogą zostać przekształconę funkcją okna. Funkcje te przyjmują wartości od 0 do 1, są symetryczne względem osi OY, przeważnie maleją począwszy od punktu 0 w obie strony. Przed poddaniem sygnału transformacji wartości są mnożone przez odpowiednie wartości funkcji okna. Pozwala to na uniknięcie zjawiska wycieku widma i poprawienie wyniku działania FFT. 
+
+\subsection{Spektogram}
+
+W szerszym zakresie analizę sygnału audio w dziedzinie częstotliwości umożliwia spektogram. Przedstawia on spektrum sygnału, zmieniające się w czasie. Aby narysować spektogram poddajemy analizie kolejne ramki o podanej długości, biorąc pod uwagę ich wzajemne nakładanie. Następnie wartości po przekształceniu wpisujemy do wykresu w osi pionowej. Do funkcji FFT brane są wszystkie parametry, wymienione w \ref{subsection:FFT}.
 
 \section{Wyniki działania programu}
+
 
 \section{Wnioski}
 
