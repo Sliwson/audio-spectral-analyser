@@ -73,6 +73,43 @@ Algorytm ten powtarzałem dla kolejnych ramek, wyznaczanych analogicznie jak dla
 
 \section{Wyniki działania programu}
 
+Sprawdźmy, czy dla sygnału o stałej częstotliwości fali uzyskamy poprawny wynik. W tym celu skorzystałem z narzędzia generującego fale sinusoidalne o zadanej częstotliwości. Dla 400Hz uzyskałem następujący rezultat:
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{scr2.png}
+\caption{Analiza dla sztucznie wygenerowanej próbki 440Hz}
+\label{fig:interface}
+\end{figure}
+
+Najwyższa wartość przypada w spodziewanym miejscu, lecz całość wykresu jest mocno zaszumiona. Zobaczmy teraz jak funkcja okna wpłynie na kształt wykresu:
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{scr3.png}
+\caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno Hamminga}
+\label{fig:interface}
+\end{figure}
+
+Jak widać wynik jest widocznie odszumiony, zwłaszcza w okolicach jego maksymalnej wartości. Podobne wyniki otrzymamy, dzięki zastosowaniu okna van Hanna:
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{scr4.png}
+\caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno van Hanna}
+\label{fig:interface}
+\end{figure}
+
+Zobaczmy jak wygląda spektogram dla takiego pliku. Ponownie, znacznie lepszy rezultat uzyskujemy stosując funkcję okna:
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{scr5.png}
+\caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram}
+\label{fig:interface}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{scr6.png}
+\caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram, okno van Hanna}
+\label{fig:interface}
+\end{figure}
 
 \section{Wnioski}
 
