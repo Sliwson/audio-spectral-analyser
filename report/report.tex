@@ -37,7 +37,8 @@ Kolejną funkcjonalnością, którą była wymagana było rysowanie spektogramu 
 Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \textit{WinForms}. Całość zacząłem od zaprojektowania wyglądu interfejsu użytkownika.
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr1.png}
+\includegraphics[width=6in]{scr1.png}
+\centering
 \caption{Interfejs użytkownika}
 \label{fig:interface}
 \end{figure}
@@ -72,11 +73,13 @@ Ostatnim i zdecydowanie najtrudniejszym zagadnieniem, było wykrywanie częstotl
 Algorytm ten powtarzałem dla kolejnych ramek, wyznaczanych analogicznie jak dla spektogramu. Wynik przedstawiłem na wykresie liniowym.
 
 \section{Wyniki działania programu}
+\subsection{Sztucznie wygenerowana fala dźwiękowa}
 
 Sprawdźmy, czy dla sygnału o stałej częstotliwości fali uzyskamy poprawny wynik. W tym celu skorzystałem z narzędzia generującego fale sinusoidalne o zadanej częstotliwości. Dla 400Hz uzyskałem następujący rezultat:
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr2.png}
+\includegraphics[width=6in]{scr2.png}
+\centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 440Hz}
 \label{fig:interface}
 \end{figure}
@@ -84,7 +87,8 @@ Sprawdźmy, czy dla sygnału o stałej częstotliwości fali uzyskamy poprawny w
 Najwyższa wartość przypada w spodziewanym miejscu, lecz całość wykresu jest mocno zaszumiona. Zobaczmy teraz jak funkcja okna wpłynie na kształt wykresu:
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr3.png}
+\includegraphics[width=6in]{scr3.png}
+\centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno Hamminga}
 \label{fig:interface}
 \end{figure}
@@ -92,7 +96,8 @@ Najwyższa wartość przypada w spodziewanym miejscu, lecz całość wykresu jes
 Jak widać wynik jest widocznie odszumiony, zwłaszcza w okolicach jego maksymalnej wartości. Podobne wyniki otrzymamy, dzięki zastosowaniu okna van Hanna:
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr4.png}
+\includegraphics[width=6in]{scr4.png}
+\centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno van Hanna}
 \label{fig:interface}
 \end{figure}
@@ -100,16 +105,20 @@ Jak widać wynik jest widocznie odszumiony, zwłaszcza w okolicach jego maksymal
 Zobaczmy jak wygląda spektogram dla takiego pliku. Ponownie, znacznie lepszy rezultat uzyskujemy stosując funkcję okna:
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr5.png}
+\includegraphics[width=6in]{scr5.png}
+\centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram}
 \label{fig:interface}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{scr6.png}
+\includegraphics[width=6in]{scr6.png}
+\centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram, okno van Hanna}
 \label{fig:interface}
 \end{figure}
+
+Pominę w tym wypadku wynik analizy tonu podstawowego, ponieważ nie daje ona miarodajnych rezultatów dla tego typu nagrania.
 
 \section{Wnioski}
 
