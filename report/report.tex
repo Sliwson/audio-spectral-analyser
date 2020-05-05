@@ -42,7 +42,7 @@ Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \tex
 \label{fig:interface}
 \end{figure}
 
-Do wczytywania plików audio użyłem biblioteki \textit{NAudio}. Bez problemu umożliwia ona ładowanie przebiegu audio oraz informacji o ścieżce takich jak długość, czy sample rate. Do rysowania wykresów użyłem, w przeciwieństwie do poprzedniego projektu, biblioteki \textit{OxyPlot}, która okazała się dużo bardziej komfortowa w użyciu oraz małym nakładem pracy zapełniła podstawowe funkcjonalnosci takie jak przybliżanie i oddalanie wykresu, przesuwanie, dodawanie etykiet osi. Na początku do obliczania FFT używałem funkcji zaimplementowanych w bibliotece \textit{NUnit}, jednak ze względu na niezadowalające rezultaty zmieniłem ją na \textit{MathNet.Numerics}. Dostarczyła mi ona funkcjonalności wystarczające do obliczania FFT, odwrotnej FFT oraz stosowania okien.
+Do wczytywania plików audio użyłem biblioteki \textit{NAudio}. Bez problemu umożliwia ona ładowanie przebiegu audio oraz informacji o ścieżce takich jak długość, czy sample rate. Do rysowania wykresów użyłem, w przeciwieństwie do poprzedniego projektu, biblioteki \textit{OxyPlot}, która okazała się dużo bardziej komfortowa w użyciu oraz małym nakładem pracy zapełniła podstawowe funkcjonalnosci takie jak przybliżanie i oddalanie wykresu, przesuwanie, dodawanie etykiet osi. Na początku do obliczania FFT używałem funkcji zaimplementowanych w bibliotece \textit{NUnit}, jednak ze względu na niezadowalające rezultaty zmieniłem ją na \textit{MathNet.Numerics}. Dostarczyła mi ona funkcjonalności wystarczające do obliczania FFT, odwrotnej FFT oraz stosowania funkcji okna.
 
 \section{Zaimplementowane metody}
 \subsection{Transformata Fouriera}
@@ -56,6 +56,20 @@ Próbki FFT mogą zostać przekształconę funkcją okna. Funkcje te przyjmują 
 \subsection{Spektogram}
 
 W szerszym zakresie analizę sygnału audio w dziedzinie częstotliwości umożliwia spektogram. Przedstawia on spektrum sygnału, zmieniające się w czasie. Aby narysować spektogram poddajemy analizie kolejne ramki o podanej długości, biorąc pod uwagę ich wzajemne nakładanie. Następnie wartości po przekształceniu wpisujemy do wykresu w osi pionowej. Do funkcji FFT brane są wszystkie parametry, wymienione w \ref{subsection:FFT}.
+
+\subsection{Częstotliwość tonu podstawowego mowy}
+
+Ostatnim i zdecydowanie najtrudniejszym zagadnieniem, było wykrywanie częstotliwości tonu podstawowego mowy za pomocą cepstrum. Dla pojedynczej ramki, ton podstawowy obliczałem w następujący sposób:
+\begin{enumerate}
+\item Oblicz FFT dla ramki.
+\item Przekształć wynikową tablicę za pomocą następującej funkcji $log|t|$.
+\item Przeprowadź odwrotną FFT na tablicy z 2.
+\item W przedziale odpowiadającym częstotliwościom od 50Hz do 400Hz znajdź indeks $x$, dla którego wartość w tablicy jest maksymalna.
+\item Przekształć indeks $x$ na odpowiadający mu czas $t$.
+\item $F_0 = \frac{1}{t}$
+\end{enumerate}
+
+Algorytm ten powtarzałem dla kolejnych ramek, wyznaczanych analogicznie jak dla spektogramu. Wynik przedstawiłem na wykresie liniowym.
 
 \section{Wyniki działania programu}
 
