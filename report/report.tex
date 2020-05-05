@@ -81,7 +81,6 @@ Sprawdźmy, czy dla sygnału o stałej częstotliwości fali uzyskamy poprawny w
 \includegraphics[width=6in]{scr2.png}
 \centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 440Hz}
-\label{fig:interface}
 \end{figure}
 
 Najwyższa wartość przypada w spodziewanym miejscu, lecz całość wykresu jest mocno zaszumiona. Zobaczmy teraz jak funkcja okna wpłynie na kształt wykresu:
@@ -90,7 +89,6 @@ Najwyższa wartość przypada w spodziewanym miejscu, lecz całość wykresu jes
 \includegraphics[width=6in]{scr3.png}
 \centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno Hamminga}
-\label{fig:interface}
 \end{figure}
 
 Jak widać wynik jest widocznie odszumiony, zwłaszcza w okolicach jego maksymalnej wartości. Podobne wyniki otrzymamy, dzięki zastosowaniu okna van Hanna:
@@ -99,7 +97,6 @@ Jak widać wynik jest widocznie odszumiony, zwłaszcza w okolicach jego maksymal
 \includegraphics[width=6in]{scr4.png}
 \centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, okno van Hanna}
-\label{fig:interface}
 \end{figure}
 
 Zobaczmy jak wygląda spektogram dla takiego pliku. Ponownie, znacznie lepszy rezultat uzyskujemy stosując funkcję okna:
@@ -108,19 +105,61 @@ Zobaczmy jak wygląda spektogram dla takiego pliku. Ponownie, znacznie lepszy re
 \includegraphics[width=6in]{scr5.png}
 \centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram}
-\label{fig:interface}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=6in]{scr6.png}
 \centering
 \caption{Analiza dla sztucznie wygenerowanej próbki 400Hz, spektogram, okno van Hanna}
-\label{fig:interface}
 \end{figure}
 
-Pominę w tym wypadku wynik analizy tonu podstawowego, ponieważ nie daje ona miarodajnych rezultatów dla tego typu nagrania.
+Pominę w tym wypadku wynik analizy częstotliwości tonu podstawowego, ponieważ nie daje ona miarodajnych rezultatów dla tego typu nagrania.
+
+\subsection{Syntezator - skrzypce}
+
+Bardzo interesujący rezultat uzyskujemy dla ścieżki skrzypiec uzyskanej za pomocą syntezatora. Na wykresach moóżemy zauważyć częstotliwości kolejnych dźwięków:
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr7.png}
+\centering
+\caption{Analiza dla syntezatora skrzypiec, okno van Hanna}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr8.png}
+\centering
+\caption{Analiza dla syntezatora skrzypiec, okno van Hanna}
+\end{figure}
+
+Również w tym wypadku nie będziemy zajmować się analizą częstotliwości tonu podstawowego.
+
+\subsection{Własne nagrania}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr9.png}
+\centering
+\caption{Analiza dla słowa gibraltar, okno Hamminga}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr10.png}
+\centering
+\caption{Analiza dla słowa gibraltar, okno Hamminga}
+\end{figure}
+
+Wyniki są zgodne z oczekiwaniami, na spektogramie widać, że częstotliwości występujące najczęściej znajdują się w zakresie częstotliwości mowy ludzkiej.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr11.png}
+\centering
+\caption{Analiza dla słowa gibraltar, okno Hamminga}
+\end{figure}
 
 \section{Wnioski}
+\subsection{Implementacja}
+Bardzo dobrym wyborem okazało się użycie biblioteki OxyPlot do rysowania wykresów. Na start oferuje ona takie funkcjonalności jak przewijanie i skalowanie, które trzeba było implementować ręcznie dla wbudowanej kontroliki \textit{Chart}. Niestety, ona również nie jest wydajna dla wykresów o dużej ilości punktów.
+\subsection{Wyniki analizy audio}
+Transformata Fouriera oraz spektogram dają oczekiwane rezultaty i z powodzeniem można ich używać do analizy widmowej. Częstotliwość tonu podstawowego jest własnością interesującą, lecz trudno znaleźć dogłębne instrukcje dotyczące jej obliczania. W moim programie parametr ten często oscyluje w zależności od parametru nakładania oraz długości ramki - wymaga on sprawdzenia z zestawami, dla których posiadamy wiarygodne wyniki.
 
 \begin{figure}[b]
 \centering
