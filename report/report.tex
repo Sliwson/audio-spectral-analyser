@@ -133,7 +133,9 @@ Bardzo interesujący rezultat uzyskujemy dla ścieżki skrzypiec uzyskanej za po
 
 Również w tym wypadku nie będziemy zajmować się analizą częstotliwości tonu podstawowego.
 
-\subsection{Własne nagrania}
+\subsection{Mowa}
+
+Zaczniemy od sprawdzenia wyników działania programu dla mojego własnego korpusu tekstowego.
 
 \begin{figure}[H]
 \includegraphics[width=6in]{scr9.png}
@@ -147,13 +149,55 @@ Również w tym wypadku nie będziemy zajmować się analizą częstotliwości t
 \caption{Analiza dla słowa gibraltar, okno Hamminga}
 \end{figure}
 
-Wyniki są zgodne z oczekiwaniami, na spektogramie widać, że częstotliwości występujące najczęściej znajdują się w zakresie częstotliwości mowy ludzkiej.
-
 \begin{figure}[H]
 \includegraphics[width=6in]{scr11.png}
 \centering
 \caption{Analiza dla słowa gibraltar, okno Hamminga}
 \end{figure}
+
+Wyniki są zgodne z oczekiwaniami, na spektogramie widać, że częstotliwości występujące najczęściej znajdują się w zakresie częstotliwości mowy ludzkiej. Częstotliwość tonu podsatwowego również przyjmuje wartości ze spodziewanego przedziału. Zobaczymy, czy będziemy zauważyć różnice między samogłoskami i spółgłoskami.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr12.png}
+\centering
+\caption{Analiza dla słowa obi, okno van Hanna}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr13.png}
+\centering
+\caption{Analiza dla słowa obi, okno van Hanna}
+\end{figure}
+
+Na wykresie spektrum widzimy, że dla samogłosek występuje dużo więcej częstotliwości wysokich. Za to maksimum tonu podstawowego mamy dla samogłoski.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr14.png}
+\centering
+\caption{Analiza dla słowa wata, okno van Hanna}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr15.png}
+\centering
+\caption{Analiza dla słowa wata, okno van Hanna}
+\end{figure}
+
+W słowie 'wata' widzimy, że dla głoski 'w' widmo jest znacznie szersze niż możnaby się było spodziewać. Jednak maksymalne wartości przypadają na niższe częstotliwości niż dla samogłosek. Maksima częstotliwości tonu podstawowego ponownie przypadają na spółgłoski, jednak nie tak wyraźnie jak w pierwszym przykładzie. Zobaczmy, czy zakres częstotliwości tonu podstawowego różni się dla głosu kobiecego i męskiego.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr16.png}
+\centering
+\caption{Analiza dla słowa jeden - głos męski, okno van Hanna}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr17.png}
+\centering
+\caption{Analiza dla słowa jeden - głos kobiecy, okno van Hanna}
+\end{figure}
+
+Widzimy, że głos częstotliwość tonu podsatwowego dla głosu kobiecego oscyluje dużo bardziej, niż dla głosu męskiego oraz przyjmuje wartości z szerszego zakresu.
 
 \section{Wnioski}
 \subsection{Implementacja}
