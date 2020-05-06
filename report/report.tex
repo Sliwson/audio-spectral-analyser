@@ -155,7 +155,7 @@ Zaczniemy od sprawdzenia wyników działania programu dla mojego własnego korpu
 \caption{Analiza dla słowa gibraltar, okno Hamminga}
 \end{figure}
 
-Wyniki są zgodne z oczekiwaniami, na spektogramie widać, że częstotliwości występujące najczęściej znajdują się w zakresie częstotliwości mowy ludzkiej. Częstotliwość tonu podsatwowego również przyjmuje wartości ze spodziewanego przedziału. Zobaczymy, czy będziemy zauważyć różnice między samogłoskami i spółgłoskami.
+Wyniki są zgodne z oczekiwaniami, na spektogramie widać, że częstotliwości występujące najczęściej znajdują się w zakresie częstotliwości mowy ludzkiej. Częstotliwość tonu podsatwowego również przyjmuje wartości ze spodziewanego przedziału. Zobaczmy, czy będziemy zauważyć różnice między samogłoskami i spółgłoskami.
 
 \begin{figure}[H]
 \includegraphics[width=6in]{scr12.png}
@@ -183,7 +183,7 @@ Na wykresie spektrum widzimy, że dla samogłosek występuje dużo więcej częs
 \caption{Analiza dla słowa wata, okno van Hanna}
 \end{figure}
 
-W słowie 'wata' widzimy, że dla głoski 'w' widmo jest znacznie szersze niż możnaby się było spodziewać. Jednak maksymalne wartości przypadają na niższe częstotliwości niż dla samogłosek. Maksima częstotliwości tonu podstawowego ponownie przypadają na spółgłoski, jednak nie tak wyraźnie jak w pierwszym przykładzie. Zobaczmy, czy zakres częstotliwości tonu podstawowego różni się dla głosu kobiecego i męskiego.
+W słowie 'wata' widzimy, że dla głoski 'w' widmo jest znacznie szersze niż możnaby się było spodziewać. Jednak maksymalne wartości przypadają na niższe częstotliwości niż dla samogłosek. Maksima częstotliwości tonu podstawowego ponownie przypadają na spółgłoski, jednak nie tak wyraźnie, jak w pierwszym przykładzie. Zobaczmy, czy zakres częstotliwości tonu podstawowego różni się dla głosu kobiecego i męskiego.
 
 \begin{figure}[H]
 \includegraphics[width=6in]{scr16.png}
@@ -198,6 +198,15 @@ W słowie 'wata' widzimy, że dla głoski 'w' widmo jest znacznie szersze niż m
 \end{figure}
 
 Widzimy, że głos częstotliwość tonu podsatwowego dla głosu kobiecego oscyluje dużo bardziej, niż dla głosu męskiego oraz przyjmuje wartości z szerszego zakresu.
+\\
+
+W spektogramie możemy zaobserwować formanty, czyli grupy składowe widma dźwięku nadające mu jego barwę. Analiza formantów jest podstawą w tworzeniu oprogramowania służącego do rozpoznawania mowy. Poniżej widzimy przykład dla głoski 'i'.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr18.png}
+\centering
+\caption{Analiza dla słowa obi - głoska i, okno van Hanna}
+\end{figure}
 
 \section{Wnioski}
 \subsection{Implementacja}
