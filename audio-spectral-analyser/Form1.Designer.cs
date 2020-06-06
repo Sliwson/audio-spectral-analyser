@@ -40,48 +40,41 @@
             this.beginLabel = new System.Windows.Forms.Label();
             this.beginFrameTime = new System.Windows.Forms.NumericUpDown();
             this.spectrumTab = new System.Windows.Forms.TabPage();
-            this.spectrumLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.frameOverlapLabel = new System.Windows.Forms.Label();
-            this.overlapNumeric = new System.Windows.Forms.NumericUpDown();
             this.spectrumPlot = new OxyPlot.WindowsForms.PlotView();
             this.fundamentalTab = new System.Windows.Forms.TabPage();
-            this.fundamentalLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.fundamentalOverlapLabel = new System.Windows.Forms.Label();
-            this.fundamentalOverlap = new System.Windows.Forms.NumericUpDown();
             this.fundamentalPlot = new OxyPlot.WindowsForms.PlotView();
+            this.volumeTab = new System.Windows.Forms.TabPage();
+            this.volumePlotChart = new OxyPlot.WindowsForms.PlotView();
+            this.frequencyCentroidTab = new System.Windows.Forms.TabPage();
+            this.frequencyCentroidChart = new OxyPlot.WindowsForms.PlotView();
+            this.effectiveBandwidthTab = new System.Windows.Forms.TabPage();
+            this.effectiveBandwidthChart = new OxyPlot.WindowsForms.PlotView();
+            this.bandEnergyTab = new System.Windows.Forms.TabPage();
+            this.bandEnergyChart = new OxyPlot.WindowsForms.PlotView();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.fundamentalOverlapLabel = new System.Windows.Forms.Label();
+            this.overlap = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.volumeTab = new System.Windows.Forms.TabPage();
-            this.frequencyCentroidTab = new System.Windows.Forms.TabPage();
-            this.effectiveBandwidthTab = new System.Windows.Forms.TabPage();
-            this.bandEnergyTab = new System.Windows.Forms.TabPage();
-            this.volumePlotChart = new OxyPlot.WindowsForms.PlotView();
-            this.frequencyCentroidChart = new OxyPlot.WindowsForms.PlotView();
-            this.effectiveBandwidthChart = new OxyPlot.WindowsForms.PlotView();
-            this.bandEnergyChart = new OxyPlot.WindowsForms.PlotView();
+            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
             this.fourierLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).BeginInit();
             this.spectrumTab.SuspendLayout();
-            this.spectrumLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).BeginInit();
             this.fundamentalTab.SuspendLayout();
-            this.fundamentalLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).BeginInit();
-            this.subLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
             this.volumeTab.SuspendLayout();
             this.frequencyCentroidTab.SuspendLayout();
             this.effectiveBandwidthTab.SuspendLayout();
             this.bandEnergyTab.SuspendLayout();
+            this.subLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.overlap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -221,7 +214,7 @@
             // 
             // spectrumTab
             // 
-            this.spectrumTab.Controls.Add(this.spectrumLayout);
+            this.spectrumTab.Controls.Add(this.spectrumPlot);
             this.spectrumTab.Location = new System.Drawing.Point(4, 22);
             this.spectrumTab.Name = "spectrumTab";
             this.spectrumTab.Padding = new System.Windows.Forms.Padding(3);
@@ -230,71 +223,15 @@
             this.spectrumTab.Text = "Spectrum";
             this.spectrumTab.UseVisualStyleBackColor = true;
             // 
-            // spectrumLayout
-            // 
-            this.spectrumLayout.ColumnCount = 3;
-            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.spectrumLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.spectrumLayout.Controls.Add(this.frameOverlapLabel, 0, 0);
-            this.spectrumLayout.Controls.Add(this.overlapNumeric, 1, 0);
-            this.spectrumLayout.Controls.Add(this.spectrumPlot, 0, 1);
-            this.spectrumLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spectrumLayout.Location = new System.Drawing.Point(3, 3);
-            this.spectrumLayout.Name = "spectrumLayout";
-            this.spectrumLayout.RowCount = 2;
-            this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.spectrumLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.spectrumLayout.Size = new System.Drawing.Size(1144, 293);
-            this.spectrumLayout.TabIndex = 0;
-            // 
-            // frameOverlapLabel
-            // 
-            this.frameOverlapLabel.AutoSize = true;
-            this.frameOverlapLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frameOverlapLabel.Location = new System.Drawing.Point(3, 0);
-            this.frameOverlapLabel.Name = "frameOverlapLabel";
-            this.frameOverlapLabel.Size = new System.Drawing.Size(94, 30);
-            this.frameOverlapLabel.TabIndex = 0;
-            this.frameOverlapLabel.Text = "Overlap:";
-            this.frameOverlapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // overlapNumeric
-            // 
-            this.overlapNumeric.DecimalPlaces = 2;
-            this.overlapNumeric.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.overlapNumeric.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.overlapNumeric.Location = new System.Drawing.Point(103, 6);
-            this.overlapNumeric.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.overlapNumeric.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            65536});
-            this.overlapNumeric.Name = "overlapNumeric";
-            this.overlapNumeric.Size = new System.Drawing.Size(94, 20);
-            this.overlapNumeric.TabIndex = 1;
-            this.overlapNumeric.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.overlapNumeric.ValueChanged += new System.EventHandler(this.OverlapNumericValueChanged);
-            // 
             // spectrumPlot
             // 
             this.spectrumPlot.BackColor = System.Drawing.Color.White;
-            this.spectrumLayout.SetColumnSpan(this.spectrumPlot, 3);
             this.spectrumPlot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spectrumPlot.Location = new System.Drawing.Point(3, 33);
+            this.spectrumPlot.Location = new System.Drawing.Point(3, 3);
             this.spectrumPlot.Name = "spectrumPlot";
             this.spectrumPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.spectrumPlot.Size = new System.Drawing.Size(1138, 257);
-            this.spectrumPlot.TabIndex = 2;
+            this.spectrumPlot.Size = new System.Drawing.Size(1144, 293);
+            this.spectrumPlot.TabIndex = 3;
             this.spectrumPlot.Text = "plotView1";
             this.spectrumPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.spectrumPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -302,7 +239,7 @@
             // 
             // fundamentalTab
             // 
-            this.fundamentalTab.Controls.Add(this.fundamentalLayout);
+            this.fundamentalTab.Controls.Add(this.fundamentalPlot);
             this.fundamentalTab.Location = new System.Drawing.Point(4, 22);
             this.fundamentalTab.Name = "fundamentalTab";
             this.fundamentalTab.Size = new System.Drawing.Size(1150, 299);
@@ -310,75 +247,115 @@
             this.fundamentalTab.Text = "Fundamental frequency";
             this.fundamentalTab.UseVisualStyleBackColor = true;
             // 
-            // fundamentalLayout
-            // 
-            this.fundamentalLayout.ColumnCount = 3;
-            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.fundamentalLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fundamentalLayout.Controls.Add(this.fundamentalOverlapLabel, 0, 0);
-            this.fundamentalLayout.Controls.Add(this.fundamentalOverlap, 1, 0);
-            this.fundamentalLayout.Controls.Add(this.fundamentalPlot, 0, 1);
-            this.fundamentalLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalLayout.Location = new System.Drawing.Point(0, 0);
-            this.fundamentalLayout.Name = "fundamentalLayout";
-            this.fundamentalLayout.RowCount = 2;
-            this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.fundamentalLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fundamentalLayout.Size = new System.Drawing.Size(1150, 299);
-            this.fundamentalLayout.TabIndex = 1;
-            // 
-            // fundamentalOverlapLabel
-            // 
-            this.fundamentalOverlapLabel.AutoSize = true;
-            this.fundamentalOverlapLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalOverlapLabel.Location = new System.Drawing.Point(3, 0);
-            this.fundamentalOverlapLabel.Name = "fundamentalOverlapLabel";
-            this.fundamentalOverlapLabel.Size = new System.Drawing.Size(94, 30);
-            this.fundamentalOverlapLabel.TabIndex = 0;
-            this.fundamentalOverlapLabel.Text = "Overlap:";
-            this.fundamentalOverlapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // fundamentalOverlap
-            // 
-            this.fundamentalOverlap.DecimalPlaces = 2;
-            this.fundamentalOverlap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalOverlap.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.fundamentalOverlap.Location = new System.Drawing.Point(103, 6);
-            this.fundamentalOverlap.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.fundamentalOverlap.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            65536});
-            this.fundamentalOverlap.Name = "fundamentalOverlap";
-            this.fundamentalOverlap.Size = new System.Drawing.Size(94, 20);
-            this.fundamentalOverlap.TabIndex = 1;
-            this.fundamentalOverlap.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.fundamentalOverlap.ValueChanged += new System.EventHandler(this.FundamentalOverlapValueChanged);
-            // 
             // fundamentalPlot
             // 
             this.fundamentalPlot.BackColor = System.Drawing.Color.White;
-            this.fundamentalLayout.SetColumnSpan(this.fundamentalPlot, 3);
             this.fundamentalPlot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalPlot.Location = new System.Drawing.Point(3, 33);
+            this.fundamentalPlot.Location = new System.Drawing.Point(0, 0);
             this.fundamentalPlot.Name = "fundamentalPlot";
             this.fundamentalPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fundamentalPlot.Size = new System.Drawing.Size(1144, 263);
-            this.fundamentalPlot.TabIndex = 2;
+            this.fundamentalPlot.Size = new System.Drawing.Size(1150, 299);
+            this.fundamentalPlot.TabIndex = 3;
             this.fundamentalPlot.Text = "plotView1";
             this.fundamentalPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.fundamentalPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.fundamentalPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // volumeTab
+            // 
+            this.volumeTab.Controls.Add(this.volumePlotChart);
+            this.volumeTab.Location = new System.Drawing.Point(4, 22);
+            this.volumeTab.Name = "volumeTab";
+            this.volumeTab.Size = new System.Drawing.Size(1150, 299);
+            this.volumeTab.TabIndex = 3;
+            this.volumeTab.Text = "Volume";
+            this.volumeTab.UseVisualStyleBackColor = true;
+            // 
+            // volumePlotChart
+            // 
+            this.volumePlotChart.BackColor = System.Drawing.Color.White;
+            this.volumePlotChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumePlotChart.Location = new System.Drawing.Point(0, 0);
+            this.volumePlotChart.Name = "volumePlotChart";
+            this.volumePlotChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.volumePlotChart.Size = new System.Drawing.Size(1150, 299);
+            this.volumePlotChart.TabIndex = 0;
+            this.volumePlotChart.Text = "plotView1";
+            this.volumePlotChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.volumePlotChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.volumePlotChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // frequencyCentroidTab
+            // 
+            this.frequencyCentroidTab.Controls.Add(this.frequencyCentroidChart);
+            this.frequencyCentroidTab.Location = new System.Drawing.Point(4, 22);
+            this.frequencyCentroidTab.Name = "frequencyCentroidTab";
+            this.frequencyCentroidTab.Size = new System.Drawing.Size(1150, 299);
+            this.frequencyCentroidTab.TabIndex = 4;
+            this.frequencyCentroidTab.Text = "Frequency Centroid";
+            this.frequencyCentroidTab.UseVisualStyleBackColor = true;
+            // 
+            // frequencyCentroidChart
+            // 
+            this.frequencyCentroidChart.BackColor = System.Drawing.Color.White;
+            this.frequencyCentroidChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frequencyCentroidChart.Location = new System.Drawing.Point(0, 0);
+            this.frequencyCentroidChart.Name = "frequencyCentroidChart";
+            this.frequencyCentroidChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.frequencyCentroidChart.Size = new System.Drawing.Size(1150, 299);
+            this.frequencyCentroidChart.TabIndex = 0;
+            this.frequencyCentroidChart.Text = "plotView1";
+            this.frequencyCentroidChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.frequencyCentroidChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.frequencyCentroidChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // effectiveBandwidthTab
+            // 
+            this.effectiveBandwidthTab.Controls.Add(this.effectiveBandwidthChart);
+            this.effectiveBandwidthTab.Location = new System.Drawing.Point(4, 22);
+            this.effectiveBandwidthTab.Name = "effectiveBandwidthTab";
+            this.effectiveBandwidthTab.Size = new System.Drawing.Size(1150, 299);
+            this.effectiveBandwidthTab.TabIndex = 5;
+            this.effectiveBandwidthTab.Text = "Effective Bandwidth";
+            this.effectiveBandwidthTab.UseVisualStyleBackColor = true;
+            // 
+            // effectiveBandwidthChart
+            // 
+            this.effectiveBandwidthChart.BackColor = System.Drawing.Color.White;
+            this.effectiveBandwidthChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectiveBandwidthChart.Location = new System.Drawing.Point(0, 0);
+            this.effectiveBandwidthChart.Name = "effectiveBandwidthChart";
+            this.effectiveBandwidthChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.effectiveBandwidthChart.Size = new System.Drawing.Size(1150, 299);
+            this.effectiveBandwidthChart.TabIndex = 0;
+            this.effectiveBandwidthChart.Text = "plotView2";
+            this.effectiveBandwidthChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.effectiveBandwidthChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.effectiveBandwidthChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // bandEnergyTab
+            // 
+            this.bandEnergyTab.Controls.Add(this.bandEnergyChart);
+            this.bandEnergyTab.Location = new System.Drawing.Point(4, 22);
+            this.bandEnergyTab.Name = "bandEnergyTab";
+            this.bandEnergyTab.Size = new System.Drawing.Size(1150, 299);
+            this.bandEnergyTab.TabIndex = 6;
+            this.bandEnergyTab.Text = "Band Energy";
+            this.bandEnergyTab.UseVisualStyleBackColor = true;
+            // 
+            // bandEnergyChart
+            // 
+            this.bandEnergyChart.BackColor = System.Drawing.Color.White;
+            this.bandEnergyChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bandEnergyChart.Location = new System.Drawing.Point(0, 0);
+            this.bandEnergyChart.Name = "bandEnergyChart";
+            this.bandEnergyChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.bandEnergyChart.Size = new System.Drawing.Size(1150, 299);
+            this.bandEnergyChart.TabIndex = 0;
+            this.bandEnergyChart.Text = "plotView3";
+            this.bandEnergyChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.bandEnergyChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.bandEnergyChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // windowCombobox
             // 
@@ -397,9 +374,13 @@
             // 
             // subLayout
             // 
-            this.subLayout.ColumnCount = 2;
-            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.subLayout.ColumnCount = 4;
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.subLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.subLayout.Controls.Add(this.fundamentalOverlapLabel, 2, 0);
+            this.subLayout.Controls.Add(this.overlap, 3, 0);
             this.subLayout.Controls.Add(this.label1, 0, 0);
             this.subLayout.Controls.Add(this.frameLengthNumeric, 1, 0);
             this.subLayout.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -410,40 +391,52 @@
             this.subLayout.Size = new System.Drawing.Size(576, 24);
             this.subLayout.TabIndex = 4;
             // 
+            // fundamentalOverlapLabel
+            // 
+            this.fundamentalOverlapLabel.AutoSize = true;
+            this.fundamentalOverlapLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalOverlapLabel.Location = new System.Drawing.Point(291, 0);
+            this.fundamentalOverlapLabel.Name = "fundamentalOverlapLabel";
+            this.fundamentalOverlapLabel.Size = new System.Drawing.Size(138, 24);
+            this.fundamentalOverlapLabel.TabIndex = 4;
+            this.fundamentalOverlapLabel.Text = "Overlap:";
+            this.fundamentalOverlapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // overlap
+            // 
+            this.overlap.DecimalPlaces = 2;
+            this.overlap.Dock = System.Windows.Forms.DockStyle.Top;
+            this.overlap.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.overlap.Location = new System.Drawing.Point(435, 3);
+            this.overlap.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            65536});
+            this.overlap.Name = "overlap";
+            this.overlap.Size = new System.Drawing.Size(138, 20);
+            this.overlap.TabIndex = 3;
+            this.overlap.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.overlap.ValueChanged += new System.EventHandler(this.OverlapValueChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 24);
+            this.label1.Size = new System.Drawing.Size(138, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Frame length:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // frameLengthNumeric
-            // 
-            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
-            this.frameLengthNumeric.Maximum = new decimal(new int[] {
-            16384,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Minimum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Name = "frameLengthNumeric";
-            this.frameLengthNumeric.ReadOnly = true;
-            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
-            this.frameLengthNumeric.TabIndex = 1;
-            this.frameLengthNumeric.Value = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
             // waveChart
             // 
@@ -477,101 +470,30 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
-            // volumeTab
+            // frameLengthNumeric
             // 
-            this.volumeTab.Controls.Add(this.volumePlotChart);
-            this.volumeTab.Location = new System.Drawing.Point(4, 22);
-            this.volumeTab.Name = "volumeTab";
-            this.volumeTab.Size = new System.Drawing.Size(1150, 299);
-            this.volumeTab.TabIndex = 3;
-            this.volumeTab.Text = "Volume";
-            this.volumeTab.UseVisualStyleBackColor = true;
-            // 
-            // frequencyCentroidTab
-            // 
-            this.frequencyCentroidTab.Controls.Add(this.frequencyCentroidChart);
-            this.frequencyCentroidTab.Location = new System.Drawing.Point(4, 22);
-            this.frequencyCentroidTab.Name = "frequencyCentroidTab";
-            this.frequencyCentroidTab.Size = new System.Drawing.Size(1150, 299);
-            this.frequencyCentroidTab.TabIndex = 4;
-            this.frequencyCentroidTab.Text = "Frequency Centroid";
-            this.frequencyCentroidTab.UseVisualStyleBackColor = true;
-            // 
-            // effectiveBandwidthTab
-            // 
-            this.effectiveBandwidthTab.Controls.Add(this.effectiveBandwidthChart);
-            this.effectiveBandwidthTab.Location = new System.Drawing.Point(4, 22);
-            this.effectiveBandwidthTab.Name = "effectiveBandwidthTab";
-            this.effectiveBandwidthTab.Size = new System.Drawing.Size(1150, 299);
-            this.effectiveBandwidthTab.TabIndex = 5;
-            this.effectiveBandwidthTab.Text = "Effective Bandwidth";
-            this.effectiveBandwidthTab.UseVisualStyleBackColor = true;
-            // 
-            // bandEnergyTab
-            // 
-            this.bandEnergyTab.Controls.Add(this.bandEnergyChart);
-            this.bandEnergyTab.Location = new System.Drawing.Point(4, 22);
-            this.bandEnergyTab.Name = "bandEnergyTab";
-            this.bandEnergyTab.Size = new System.Drawing.Size(1150, 299);
-            this.bandEnergyTab.TabIndex = 6;
-            this.bandEnergyTab.Text = "Band Energy";
-            this.bandEnergyTab.UseVisualStyleBackColor = true;
-            // 
-            // volumePlotChart
-            // 
-            this.volumePlotChart.BackColor = System.Drawing.Color.White;
-            this.volumePlotChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.volumePlotChart.Location = new System.Drawing.Point(0, 0);
-            this.volumePlotChart.Name = "volumePlotChart";
-            this.volumePlotChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.volumePlotChart.Size = new System.Drawing.Size(1150, 299);
-            this.volumePlotChart.TabIndex = 0;
-            this.volumePlotChart.Text = "plotView1";
-            this.volumePlotChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.volumePlotChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.volumePlotChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // frequencyCentroidChart
-            // 
-            this.frequencyCentroidChart.BackColor = System.Drawing.Color.White;
-            this.frequencyCentroidChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frequencyCentroidChart.Location = new System.Drawing.Point(0, 0);
-            this.frequencyCentroidChart.Name = "frequencyCentroidChart";
-            this.frequencyCentroidChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.frequencyCentroidChart.Size = new System.Drawing.Size(1150, 299);
-            this.frequencyCentroidChart.TabIndex = 0;
-            this.frequencyCentroidChart.Text = "plotView1";
-            this.frequencyCentroidChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.frequencyCentroidChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.frequencyCentroidChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // effectiveBandwidthChart
-            // 
-            this.effectiveBandwidthChart.BackColor = System.Drawing.Color.White;
-            this.effectiveBandwidthChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.effectiveBandwidthChart.Location = new System.Drawing.Point(0, 0);
-            this.effectiveBandwidthChart.Name = "effectiveBandwidthChart";
-            this.effectiveBandwidthChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.effectiveBandwidthChart.Size = new System.Drawing.Size(1150, 299);
-            this.effectiveBandwidthChart.TabIndex = 0;
-            this.effectiveBandwidthChart.Text = "plotView2";
-            this.effectiveBandwidthChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.effectiveBandwidthChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.effectiveBandwidthChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // bandEnergyChart
-            // 
-            this.bandEnergyChart.BackColor = System.Drawing.Color.White;
-            this.bandEnergyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bandEnergyChart.Location = new System.Drawing.Point(0, 0);
-            this.bandEnergyChart.Name = "bandEnergyChart";
-            this.bandEnergyChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.bandEnergyChart.Size = new System.Drawing.Size(1150, 299);
-            this.bandEnergyChart.TabIndex = 0;
-            this.bandEnergyChart.Text = "plotView3";
-            this.bandEnergyChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.bandEnergyChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.bandEnergyChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            this.frameLengthNumeric.Dock = System.Windows.Forms.DockStyle.Top;
+            this.frameLengthNumeric.Location = new System.Drawing.Point(147, 3);
+            this.frameLengthNumeric.Maximum = new decimal(new int[] {
+            16384,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Minimum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Name = "frameLengthNumeric";
+            this.frameLengthNumeric.ReadOnly = true;
+            this.frameLengthNumeric.Size = new System.Drawing.Size(138, 20);
+            this.frameLengthNumeric.TabIndex = 1;
+            this.frameLengthNumeric.Value = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
             // 
             // Form1
             // 
@@ -593,20 +515,15 @@
             this.fourierLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beginFrameTime)).EndInit();
             this.spectrumTab.ResumeLayout(false);
-            this.spectrumLayout.ResumeLayout(false);
-            this.spectrumLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overlapNumeric)).EndInit();
             this.fundamentalTab.ResumeLayout(false);
-            this.fundamentalLayout.ResumeLayout(false);
-            this.fundamentalLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).EndInit();
-            this.subLayout.ResumeLayout(false);
-            this.subLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
             this.volumeTab.ResumeLayout(false);
             this.frequencyCentroidTab.ResumeLayout(false);
             this.effectiveBandwidthTab.ResumeLayout(false);
             this.bandEnergyTab.ResumeLayout(false);
+            this.subLayout.ResumeLayout(false);
+            this.subLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.overlap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -632,14 +549,6 @@
         private System.Windows.Forms.CheckBox oneFrameCheckBox;
         private System.Windows.Forms.Label beginLabel;
         private System.Windows.Forms.NumericUpDown beginFrameTime;
-        private System.Windows.Forms.TableLayoutPanel spectrumLayout;
-        private System.Windows.Forms.Label frameOverlapLabel;
-        private System.Windows.Forms.NumericUpDown overlapNumeric;
-        private OxyPlot.WindowsForms.PlotView spectrumPlot;
-        private System.Windows.Forms.TableLayoutPanel fundamentalLayout;
-        private System.Windows.Forms.Label fundamentalOverlapLabel;
-        private System.Windows.Forms.NumericUpDown fundamentalOverlap;
-        private OxyPlot.WindowsForms.PlotView fundamentalPlot;
         private System.Windows.Forms.TabPage volumeTab;
         private OxyPlot.WindowsForms.PlotView volumePlotChart;
         private System.Windows.Forms.TabPage frequencyCentroidTab;
@@ -648,6 +557,10 @@
         private OxyPlot.WindowsForms.PlotView effectiveBandwidthChart;
         private System.Windows.Forms.TabPage bandEnergyTab;
         private OxyPlot.WindowsForms.PlotView bandEnergyChart;
+        private OxyPlot.WindowsForms.PlotView fundamentalPlot;
+        private System.Windows.Forms.Label fundamentalOverlapLabel;
+        private System.Windows.Forms.NumericUpDown overlap;
+        private OxyPlot.WindowsForms.PlotView spectrumPlot;
     }
 }
 

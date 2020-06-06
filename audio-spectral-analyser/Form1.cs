@@ -13,11 +13,28 @@ namespace audio_spectral_analyser
     public partial class Form1 : Form
     {
         private WaveChartControls waveChartControls = null;
+        private Action[] tabRefreshActions;
 
         public Form1()
         {
             InitializeComponent();
+            SetupRefreshActions();
+
             windowCombobox.SelectedIndex = 0;
+        }
+
+        private void SetupRefreshActions()
+        {
+            tabRefreshActions = new Action[]
+            {
+                RedrawFFT,
+                RedrawSpectogram,
+                RedrawFundamentalFrequency,
+                RedrawVolume,
+                RedrawFrequencyCentroid,
+                RedrawEffectiveBandwidth,
+                RedrawBandEnergy,
+            };
         }
 
         private void OpenFileClick(object sender, EventArgs e)
@@ -38,14 +55,11 @@ namespace audio_spectral_analyser
 
         private void RedrawFFT()
         {
-            if (waveChartControls == null || tabControl.SelectedIndex != 0)
-                return;
-
-            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
             var oneFrame = oneFrameCheckBox.Checked;
+
             if (oneFrame)
             {
-                var frameLength = (int)frameLengthNumeric.Value;
                 var beginTime = (double)beginFrameTime.Value;
                 waveChartControls.PlotFFTFrame(fftChart, type, frameLength, beginTime);
             }
@@ -57,24 +71,45 @@ namespace audio_spectral_analyser
 
         private void RedrawSpectogram()
         {
-            if (waveChartControls == null || tabControl.SelectedIndex != 1)
-                return;
-
-            var frameLength = (int)frameLengthNumeric.Value;
-            var overlap = (double)overlapNumeric.Value;
-            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
-            waveChartControls.PlotSpectogram(spectrumPlot, type, frameLength, overlap);
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotSpectogram(spectrumPlot, type, frameLength, overlapValue);
         }
 
         private void RedrawFundamentalFrequency()
         {
-            if (waveChartControls == null || tabControl.SelectedIndex != 2)
-                return;
-            
-            var frameLength = (int)frameLengthNumeric.Value;
-            var overlap = (double)fundamentalOverlap.Value;
-            var type = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
-            waveChartControls.PlotFundamentalFrequency(fundamentalPlot, type, frameLength, overlap);
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotFundamentalFrequency(fundamentalPlot, type, frameLength, overlapValue);
+        }
+
+        private void RedrawVolume()
+        {
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotVolume(volumePlotChart, type, frameLength, overlapValue);
+        }
+
+        private void RedrawFrequencyCentroid()
+        {
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotFrequencyCentroid(volumePlotChart, type, frameLength, overlapValue);
+        }
+
+        private void RedrawEffectiveBandwidth()
+        {
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotEffectiveBandwidth(volumePlotChart, type, frameLength, overlapValue);
+        }
+
+        private void RedrawBandEnergy()
+        {
+            GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
+            waveChartControls.PlotBandEnergy(volumePlotChart, type, frameLength, overlapValue);
+        }
+
+        private void GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType outType)
+        {
+            frameLength = (int)frameLengthNumeric.Value;
+            overlapValue = (double)overlap.Value;
+            outType = WindowTypeExtension.FromInt(windowCombobox.SelectedIndex);
         }
 
         #region Redraw bindings
@@ -86,7 +121,8 @@ namespace audio_spectral_analyser
 
         private void OneFrameCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            RedrawFFT();
+            if (waveChartControls != null)
+                RedrawFFT();
         }
 
         private void FrameLengthNumericValueChanged(object sender, EventArgs e)
@@ -96,29 +132,30 @@ namespace audio_spectral_analyser
 
         private void BeginFrameTimeValueChanged(object sender, EventArgs e)
         {
-            RedrawFFT();
-        }
+            if (waveChartControls != null)
+                RedrawFFT();
+            }
 
         private void TabControlSelectedIndexChanged(object sender, EventArgs e)
         {
             RedrawAll();
         }
-
-        private void OverlapNumericValueChanged(object sender, EventArgs e)
+        
+        private void OverlapValueChanged(object sender, EventArgs e)
         {
-            RedrawSpectogram();
-        }
-
-        private void FundamentalOverlapValueChanged(object sender, EventArgs e)
-        {
-            RedrawFundamentalFrequency();
+            RedrawAll();
         }
 
         private void RedrawAll()
         {
-            RedrawFFT();
-            RedrawSpectogram();
-            RedrawFundamentalFrequency();
+            Cursor.Current = Cursors.WaitCursor;
+            if (waveChartControls == null)
+                return;
+
+            int index = tabControl.SelectedIndex;
+            tabRefreshActions[index].Invoke();
+            
+            Cursor.Current = Cursors.Default;
         }
 
         #endregion

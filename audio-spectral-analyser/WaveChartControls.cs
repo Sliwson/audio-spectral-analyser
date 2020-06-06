@@ -188,7 +188,7 @@ namespace audio_spectral_analyser
             var end = 2 * 400 * frameLength / sampleRate;
             if (begin == end)
             {
-                FillFundamentalPlot(view, data);
+                FillDefaultPlotView(view, "Frequency (Hz)", data);
                 return;
             }
 
@@ -205,16 +205,36 @@ namespace audio_spectral_analyser
                 data[i] = realIdx * sampleRate / (2 * frameLength);
             }
 
-            FillFundamentalPlot(view, data);
+            FillDefaultPlotView(view, "Frequency (Hz)", data);
         }
 
-        private void FillFundamentalPlot(PlotView view, double[] result)
+        public void PlotVolume(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+
+        }
+
+        public void PlotFrequencyCentroid(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+
+        }
+
+        public void PlotEffectiveBandwidth(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+    
+        }
+
+        public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+    
+        }
+
+        private void FillDefaultPlotView(PlotView view, string yTitle, double[] result)
         {
             var model = new PlotModel { };
 
             model.Axes.Add(new LinearAxis
             {
-                Title = "Frequency (Hz)",
+                Title =  yTitle
             });
 
             model.Axes.Add(new LinearAxis
