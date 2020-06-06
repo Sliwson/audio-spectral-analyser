@@ -210,22 +210,22 @@ namespace audio_spectral_analyser
 
         public void PlotVolume(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-
+            FillDefaultPlotView(view, "Volume", new double[0]);
         }
 
         public void PlotFrequencyCentroid(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-
+            FillDefaultPlotView(view, "Frequency (Hz)", new double[0]);
         }
 
         public void PlotEffectiveBandwidth(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-    
+            FillDefaultPlotView(view, "", new double[0]);
         }
 
         public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-    
+            FillDefaultPlotView(view, "", new double[0]);
         }
 
         private void FillDefaultPlotView(PlotView view, string yTitle, double[] result)

@@ -90,19 +90,19 @@ namespace audio_spectral_analyser
         private void RedrawFrequencyCentroid()
         {
             GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
-            waveChartControls.PlotFrequencyCentroid(volumePlotChart, type, frameLength, overlapValue);
+            waveChartControls.PlotFrequencyCentroid(frequencyCentroidChart, type, frameLength, overlapValue);
         }
 
         private void RedrawEffectiveBandwidth()
         {
             GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
-            waveChartControls.PlotEffectiveBandwidth(volumePlotChart, type, frameLength, overlapValue);
+            waveChartControls.PlotEffectiveBandwidth(effectiveBandwidthChart, type, frameLength, overlapValue);
         }
 
         private void RedrawBandEnergy()
         {
             GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
-            waveChartControls.PlotBandEnergy(volumePlotChart, type, frameLength, overlapValue);
+            waveChartControls.PlotBandEnergy(bandEnergyChart, type, frameLength, overlapValue);
         }
 
         private void GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType outType)
