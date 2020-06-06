@@ -52,11 +52,19 @@
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.waveChart = new OxyPlot.WindowsForms.PlotView();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
+            this.volumeTab = new System.Windows.Forms.TabPage();
+            this.frequencyCentroidTab = new System.Windows.Forms.TabPage();
+            this.effectiveBandwidthTab = new System.Windows.Forms.TabPage();
+            this.bandEnergyTab = new System.Windows.Forms.TabPage();
+            this.volumePlotChart = new OxyPlot.WindowsForms.PlotView();
+            this.frequencyCentroidChart = new OxyPlot.WindowsForms.PlotView();
+            this.effectiveBandwidthChart = new OxyPlot.WindowsForms.PlotView();
+            this.bandEnergyChart = new OxyPlot.WindowsForms.PlotView();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.fourierTab.SuspendLayout();
@@ -70,6 +78,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalOverlap)).BeginInit();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
+            this.volumeTab.SuspendLayout();
+            this.frequencyCentroidTab.SuspendLayout();
+            this.effectiveBandwidthTab.SuspendLayout();
+            this.bandEnergyTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayout
@@ -109,6 +121,10 @@
             this.tabControl.Controls.Add(this.fourierTab);
             this.tabControl.Controls.Add(this.spectrumTab);
             this.tabControl.Controls.Add(this.fundamentalTab);
+            this.tabControl.Controls.Add(this.volumeTab);
+            this.tabControl.Controls.Add(this.frequencyCentroidTab);
+            this.tabControl.Controls.Add(this.effectiveBandwidthTab);
+            this.tabControl.Controls.Add(this.bandEnergyTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(3, 213);
             this.tabControl.Name = "tabControl";
@@ -405,6 +421,30 @@
             this.label1.Text = "Frame length:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // frameLengthNumeric
+            // 
+            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
+            this.frameLengthNumeric.Maximum = new decimal(new int[] {
+            16384,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Minimum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.Name = "frameLengthNumeric";
+            this.frameLengthNumeric.ReadOnly = true;
+            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
+            this.frameLengthNumeric.TabIndex = 1;
+            this.frameLengthNumeric.Value = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
+            // 
             // waveChart
             // 
             this.waveChart.BackColor = System.Drawing.Color.White;
@@ -437,29 +477,101 @@
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
             // 
-            // frameLengthNumeric
+            // volumeTab
             // 
-            this.frameLengthNumeric.Location = new System.Drawing.Point(83, 3);
-            this.frameLengthNumeric.Maximum = new decimal(new int[] {
-            16384,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Minimum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.Name = "frameLengthNumeric";
-            this.frameLengthNumeric.ReadOnly = true;
-            this.frameLengthNumeric.Size = new System.Drawing.Size(120, 20);
-            this.frameLengthNumeric.TabIndex = 1;
-            this.frameLengthNumeric.Value = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.frameLengthNumeric.ValueChanged += new System.EventHandler(this.FrameLengthNumericValueChanged);
+            this.volumeTab.Controls.Add(this.volumePlotChart);
+            this.volumeTab.Location = new System.Drawing.Point(4, 22);
+            this.volumeTab.Name = "volumeTab";
+            this.volumeTab.Size = new System.Drawing.Size(1150, 299);
+            this.volumeTab.TabIndex = 3;
+            this.volumeTab.Text = "Volume";
+            this.volumeTab.UseVisualStyleBackColor = true;
+            // 
+            // frequencyCentroidTab
+            // 
+            this.frequencyCentroidTab.Controls.Add(this.frequencyCentroidChart);
+            this.frequencyCentroidTab.Location = new System.Drawing.Point(4, 22);
+            this.frequencyCentroidTab.Name = "frequencyCentroidTab";
+            this.frequencyCentroidTab.Size = new System.Drawing.Size(1150, 299);
+            this.frequencyCentroidTab.TabIndex = 4;
+            this.frequencyCentroidTab.Text = "Frequency Centroid";
+            this.frequencyCentroidTab.UseVisualStyleBackColor = true;
+            // 
+            // effectiveBandwidthTab
+            // 
+            this.effectiveBandwidthTab.Controls.Add(this.effectiveBandwidthChart);
+            this.effectiveBandwidthTab.Location = new System.Drawing.Point(4, 22);
+            this.effectiveBandwidthTab.Name = "effectiveBandwidthTab";
+            this.effectiveBandwidthTab.Size = new System.Drawing.Size(1150, 299);
+            this.effectiveBandwidthTab.TabIndex = 5;
+            this.effectiveBandwidthTab.Text = "Effective Bandwidth";
+            this.effectiveBandwidthTab.UseVisualStyleBackColor = true;
+            // 
+            // bandEnergyTab
+            // 
+            this.bandEnergyTab.Controls.Add(this.bandEnergyChart);
+            this.bandEnergyTab.Location = new System.Drawing.Point(4, 22);
+            this.bandEnergyTab.Name = "bandEnergyTab";
+            this.bandEnergyTab.Size = new System.Drawing.Size(1150, 299);
+            this.bandEnergyTab.TabIndex = 6;
+            this.bandEnergyTab.Text = "Band Energy";
+            this.bandEnergyTab.UseVisualStyleBackColor = true;
+            // 
+            // volumePlotChart
+            // 
+            this.volumePlotChart.BackColor = System.Drawing.Color.White;
+            this.volumePlotChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumePlotChart.Location = new System.Drawing.Point(0, 0);
+            this.volumePlotChart.Name = "volumePlotChart";
+            this.volumePlotChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.volumePlotChart.Size = new System.Drawing.Size(1150, 299);
+            this.volumePlotChart.TabIndex = 0;
+            this.volumePlotChart.Text = "plotView1";
+            this.volumePlotChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.volumePlotChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.volumePlotChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // frequencyCentroidChart
+            // 
+            this.frequencyCentroidChart.BackColor = System.Drawing.Color.White;
+            this.frequencyCentroidChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frequencyCentroidChart.Location = new System.Drawing.Point(0, 0);
+            this.frequencyCentroidChart.Name = "frequencyCentroidChart";
+            this.frequencyCentroidChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.frequencyCentroidChart.Size = new System.Drawing.Size(1150, 299);
+            this.frequencyCentroidChart.TabIndex = 0;
+            this.frequencyCentroidChart.Text = "plotView1";
+            this.frequencyCentroidChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.frequencyCentroidChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.frequencyCentroidChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // effectiveBandwidthChart
+            // 
+            this.effectiveBandwidthChart.BackColor = System.Drawing.Color.White;
+            this.effectiveBandwidthChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectiveBandwidthChart.Location = new System.Drawing.Point(0, 0);
+            this.effectiveBandwidthChart.Name = "effectiveBandwidthChart";
+            this.effectiveBandwidthChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.effectiveBandwidthChart.Size = new System.Drawing.Size(1150, 299);
+            this.effectiveBandwidthChart.TabIndex = 0;
+            this.effectiveBandwidthChart.Text = "plotView2";
+            this.effectiveBandwidthChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.effectiveBandwidthChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.effectiveBandwidthChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // bandEnergyChart
+            // 
+            this.bandEnergyChart.BackColor = System.Drawing.Color.White;
+            this.bandEnergyChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bandEnergyChart.Location = new System.Drawing.Point(0, 0);
+            this.bandEnergyChart.Name = "bandEnergyChart";
+            this.bandEnergyChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.bandEnergyChart.Size = new System.Drawing.Size(1150, 299);
+            this.bandEnergyChart.TabIndex = 0;
+            this.bandEnergyChart.Text = "plotView3";
+            this.bandEnergyChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.bandEnergyChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.bandEnergyChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // Form1
             // 
@@ -491,6 +603,10 @@
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
+            this.volumeTab.ResumeLayout(false);
+            this.frequencyCentroidTab.ResumeLayout(false);
+            this.effectiveBandwidthTab.ResumeLayout(false);
+            this.bandEnergyTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -524,6 +640,14 @@
         private System.Windows.Forms.Label fundamentalOverlapLabel;
         private System.Windows.Forms.NumericUpDown fundamentalOverlap;
         private OxyPlot.WindowsForms.PlotView fundamentalPlot;
+        private System.Windows.Forms.TabPage volumeTab;
+        private OxyPlot.WindowsForms.PlotView volumePlotChart;
+        private System.Windows.Forms.TabPage frequencyCentroidTab;
+        private OxyPlot.WindowsForms.PlotView frequencyCentroidChart;
+        private System.Windows.Forms.TabPage effectiveBandwidthTab;
+        private OxyPlot.WindowsForms.PlotView effectiveBandwidthChart;
+        private System.Windows.Forms.TabPage bandEnergyTab;
+        private OxyPlot.WindowsForms.PlotView bandEnergyChart;
     }
 }
 
