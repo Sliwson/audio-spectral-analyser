@@ -268,8 +268,7 @@ namespace audio_spectral_analyser
                 return limiter / denominator;
             });
 
-            FillDefaultPlotView(view, "Effective Bandwidth", data);
-
+            FillDefaultPlotView(view, "Band Energy", data);
         }
 
         private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], int, double> calculationFunc)
