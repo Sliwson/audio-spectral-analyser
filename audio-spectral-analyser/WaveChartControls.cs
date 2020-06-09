@@ -288,7 +288,6 @@ namespace audio_spectral_analyser
             return data;
         }
 
-
         private double[] CalculateFrequencyCentroid(WindowType windowType, int frameLength, double overlap)
         {
             var binWidth = sampleRate / frameLength; 
