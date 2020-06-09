@@ -209,13 +209,33 @@ namespace audio_spectral_analyser
         }
 
         public void PlotVolume(PlotView view, WindowType windowType, int frameLength, double overlap)
-        {
-            FillDefaultPlotView(view, "Volume", new double[0]);
+        {   
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample) => {
+                return sample.Sum(p => p * p) / sample.Length;
+            });
+
+            FillDefaultPlotView(view, "Volume", data);
         }
 
         public void PlotFrequencyCentroid(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-            FillDefaultPlotView(view, "Frequency (Hz)", new double[0]);
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                    limiter += i * binWidth * sample[i];
+
+                double denominator = 0;
+                for (int i = 0; i < sample.Length; i++)
+                    denominator += sample[i]; 
+
+                return limiter / denominator;
+            });
+
+            FillDefaultPlotView(view, "Frequency (Hz)", data);
         }
 
         public void PlotEffectiveBandwidth(PlotView view, WindowType windowType, int frameLength, double overlap)
@@ -226,6 +246,23 @@ namespace audio_spectral_analyser
         public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
             FillDefaultPlotView(view, "", new double[0]);
+        }
+
+        private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], double> calculationFunc)
+        {
+            var span = (int)Math.Round(frameLength * (1.0 - overlap));
+            int columns = waveList.Count / span;
+            var data = new double[columns];
+
+            for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
+            {
+                var sample = GetSample(frameLength, beginPoint);
+                var fft = new FFTWrapper(sample);
+                var result = fft.CalculateMagnitude(windowType);
+                data[i] = calculationFunc(result); 
+            }
+
+            return data;
         }
 
         private void FillDefaultPlotView(PlotView view, string yTitle, double[] result)
