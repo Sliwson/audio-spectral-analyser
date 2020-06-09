@@ -235,7 +235,7 @@ namespace audio_spectral_analyser
                 double limiter = 0;
                 for (int i = 0; i < sample.Length; i++)
                 {
-                    double w = i * binWidth;
+                    var w = i * binWidth;
                     limiter += (w - fc[idx]) * (w - fc[idx]) * sample[i] * sample[i];
                 }
 
@@ -246,9 +246,30 @@ namespace audio_spectral_analyser
             FillDefaultPlotView(view, "Effective Bandwidth", data);
         }
 
-        public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap)
+        public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap, double minFrequency, double maxFrequency)
         {
             FillDefaultPlotView(view, "", new double[0]);
+            
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                {
+                    var w = i * binWidth;
+                    if (w >= minFrequency && w <= maxFrequency)
+                        limiter += sample[i] * sample[i];
+                }
+
+                var window = FFTWrapper.GetWindow(windowType, frameLength);
+                var denominator = window.Sum();
+                return limiter / denominator;
+            });
+
+            FillDefaultPlotView(view, "Effective Bandwidth", data);
+
         }
 
         private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], int, double> calculationFunc)

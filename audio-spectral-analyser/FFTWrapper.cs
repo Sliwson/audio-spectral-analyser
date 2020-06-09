@@ -67,7 +67,7 @@ namespace audio_spectral_analyser
             return scaledData;
         }
 
-        private double[] GetWindow(WindowType type, int width)
+        public static double[] GetWindow(WindowType type, int width)
         {
             switch (type)
             {

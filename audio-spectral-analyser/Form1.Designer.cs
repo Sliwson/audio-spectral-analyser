@@ -50,7 +50,6 @@
             this.effectiveBandwidthTab = new System.Windows.Forms.TabPage();
             this.effectiveBandwidthChart = new OxyPlot.WindowsForms.PlotView();
             this.bandEnergyTab = new System.Windows.Forms.TabPage();
-            this.bandEnergyChart = new OxyPlot.WindowsForms.PlotView();
             this.windowCombobox = new System.Windows.Forms.ComboBox();
             this.subLayout = new System.Windows.Forms.TableLayoutPanel();
             this.fundamentalOverlapLabel = new System.Windows.Forms.Label();
@@ -60,6 +59,12 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.bandEnergyChart = new OxyPlot.WindowsForms.PlotView();
+            this.f0Label = new System.Windows.Forms.Label();
+            this.f1Label = new System.Windows.Forms.Label();
+            this.f0Numeric = new System.Windows.Forms.NumericUpDown();
+            this.f1Numeric = new System.Windows.Forms.NumericUpDown();
             this.frameLengthNumeric = new audio_spectral_analyser.PowerNumericUpDown();
             this.mainLayout.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -74,6 +79,9 @@
             this.bandEnergyTab.SuspendLayout();
             this.subLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overlap)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.f0Numeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.f1Numeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -335,27 +343,13 @@
             // 
             // bandEnergyTab
             // 
-            this.bandEnergyTab.Controls.Add(this.bandEnergyChart);
+            this.bandEnergyTab.Controls.Add(this.tableLayoutPanel1);
             this.bandEnergyTab.Location = new System.Drawing.Point(4, 22);
             this.bandEnergyTab.Name = "bandEnergyTab";
             this.bandEnergyTab.Size = new System.Drawing.Size(1150, 299);
             this.bandEnergyTab.TabIndex = 6;
             this.bandEnergyTab.Text = "Band Energy";
             this.bandEnergyTab.UseVisualStyleBackColor = true;
-            // 
-            // bandEnergyChart
-            // 
-            this.bandEnergyChart.BackColor = System.Drawing.Color.White;
-            this.bandEnergyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bandEnergyChart.Location = new System.Drawing.Point(0, 0);
-            this.bandEnergyChart.Name = "bandEnergyChart";
-            this.bandEnergyChart.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.bandEnergyChart.Size = new System.Drawing.Size(1150, 299);
-            this.bandEnergyChart.TabIndex = 0;
-            this.bandEnergyChart.Text = "plotView3";
-            this.bandEnergyChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.bandEnergyChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.bandEnergyChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // windowCombobox
             // 
@@ -436,7 +430,7 @@
             this.label1.Size = new System.Drawing.Size(138, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Frame length:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // waveChart
             // 
@@ -469,6 +463,108 @@
             this.menuItem2.Index = 0;
             this.menuItem2.Text = "Open";
             this.menuItem2.Click += new System.EventHandler(this.OpenFileClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.f1Numeric, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.f0Numeric, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.f1Label, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.f0Label, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.bandEnergyChart, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1150, 299);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // bandEnergyChart
+            // 
+            this.bandEnergyChart.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.SetColumnSpan(this.bandEnergyChart, 5);
+            this.bandEnergyChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bandEnergyChart.Location = new System.Drawing.Point(3, 28);
+            this.bandEnergyChart.Name = "bandEnergyChart";
+            this.bandEnergyChart.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.bandEnergyChart.Size = new System.Drawing.Size(1144, 268);
+            this.bandEnergyChart.TabIndex = 1;
+            this.bandEnergyChart.Text = "plotView3";
+            this.bandEnergyChart.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.bandEnergyChart.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.bandEnergyChart.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // f0Label
+            // 
+            this.f0Label.AutoSize = true;
+            this.f0Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.f0Label.Location = new System.Drawing.Point(3, 0);
+            this.f0Label.Name = "f0Label";
+            this.f0Label.Size = new System.Drawing.Size(94, 25);
+            this.f0Label.TabIndex = 5;
+            this.f0Label.Text = "f0:";
+            this.f0Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // f1Label
+            // 
+            this.f1Label.AutoSize = true;
+            this.f1Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.f1Label.Location = new System.Drawing.Point(203, 0);
+            this.f1Label.Name = "f1Label";
+            this.f1Label.Size = new System.Drawing.Size(94, 25);
+            this.f1Label.TabIndex = 6;
+            this.f1Label.Text = "f1:";
+            this.f1Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // f0Numeric
+            // 
+            this.f0Numeric.Dock = System.Windows.Forms.DockStyle.Top;
+            this.f0Numeric.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.f0Numeric.Location = new System.Drawing.Point(103, 3);
+            this.f0Numeric.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.f0Numeric.Name = "f0Numeric";
+            this.f0Numeric.Size = new System.Drawing.Size(94, 20);
+            this.f0Numeric.TabIndex = 7;
+            this.f0Numeric.ValueChanged += new System.EventHandler(this.F0NumericValueChanged);
+            // 
+            // f1Numeric
+            // 
+            this.f1Numeric.Dock = System.Windows.Forms.DockStyle.Top;
+            this.f1Numeric.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.f1Numeric.Location = new System.Drawing.Point(303, 3);
+            this.f1Numeric.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.f1Numeric.Name = "f1Numeric";
+            this.f1Numeric.Size = new System.Drawing.Size(94, 20);
+            this.f1Numeric.TabIndex = 8;
+            this.f1Numeric.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.f1Numeric.ValueChanged += new System.EventHandler(this.F1NumericValueChanged);
             // 
             // frameLengthNumeric
             // 
@@ -523,6 +619,10 @@
             this.subLayout.ResumeLayout(false);
             this.subLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overlap)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.f0Numeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.f1Numeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthNumeric)).EndInit();
             this.ResumeLayout(false);
 
@@ -556,11 +656,16 @@
         private System.Windows.Forms.TabPage effectiveBandwidthTab;
         private OxyPlot.WindowsForms.PlotView effectiveBandwidthChart;
         private System.Windows.Forms.TabPage bandEnergyTab;
-        private OxyPlot.WindowsForms.PlotView bandEnergyChart;
         private OxyPlot.WindowsForms.PlotView fundamentalPlot;
         private System.Windows.Forms.Label fundamentalOverlapLabel;
         private System.Windows.Forms.NumericUpDown overlap;
         private OxyPlot.WindowsForms.PlotView spectrumPlot;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.NumericUpDown f1Numeric;
+        private System.Windows.Forms.NumericUpDown f0Numeric;
+        private System.Windows.Forms.Label f1Label;
+        private System.Windows.Forms.Label f0Label;
+        private OxyPlot.WindowsForms.PlotView bandEnergyChart;
     }
 }
 

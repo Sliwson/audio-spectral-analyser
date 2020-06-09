@@ -102,7 +102,10 @@ namespace audio_spectral_analyser
         private void RedrawBandEnergy()
         {
             GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType type);
-            waveChartControls.PlotBandEnergy(bandEnergyChart, type, frameLength, overlapValue);
+            var minFrequency = (double)f0Numeric.Value;
+            var maxFrequency = (double)f1Numeric.Value;
+
+            waveChartControls.PlotBandEnergy(bandEnergyChart, type, frameLength, overlapValue, minFrequency, maxFrequency);
         }
 
         private void GetBasicUiFeatures(out int frameLength, out double overlapValue, out WindowType outType)
@@ -142,6 +145,16 @@ namespace audio_spectral_analyser
         }
         
         private void OverlapValueChanged(object sender, EventArgs e)
+        {
+            RedrawAll();
+        }
+
+        private void F0NumericValueChanged(object sender, EventArgs e)
+        {
+            RedrawAll();
+        }
+
+        private void F1NumericValueChanged(object sender, EventArgs e)
         {
             RedrawAll();
         }
