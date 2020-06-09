@@ -10,6 +10,7 @@ using OxyPlot.Series;
 using OxyPlot.Axes;
 using MathNet.Numerics;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace audio_spectral_analyser
 {
@@ -210,7 +211,7 @@ namespace audio_spectral_analyser
 
         public void PlotVolume(PlotView view, WindowType windowType, int frameLength, double overlap)
         {   
-            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample) => {
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
                 return sample.Sum(p => p * p) / sample.Length;
             });
 
@@ -219,28 +220,30 @@ namespace audio_spectral_analyser
 
         public void PlotFrequencyCentroid(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-            var binWidth = sampleRate / frameLength; 
-
-            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample) => {
-                sample = sample.Take(frameLength / 2).ToArray();
-
-                double limiter = 0;
-                for (int i = 0; i < sample.Length; i++)
-                    limiter += i * binWidth * sample[i];
-
-                double denominator = 0;
-                for (int i = 0; i < sample.Length; i++)
-                    denominator += sample[i]; 
-
-                return limiter / denominator;
-            });
-
+            var data = CalculateFrequencyCentroid(windowType, frameLength, overlap);
             FillDefaultPlotView(view, "Frequency (Hz)", data);
         }
 
         public void PlotEffectiveBandwidth(PlotView view, WindowType windowType, int frameLength, double overlap)
         {
-            FillDefaultPlotView(view, "", new double[0]);
+            var fc = CalculateFrequencyCentroid(windowType, frameLength, overlap);
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                {
+                    double w = i * binWidth;
+                    limiter += (w - fc[idx]) * (w - fc[idx]) * sample[i] * sample[i];
+                }
+
+                var denominator = sample.Sum(p => p * p);
+                return limiter / denominator;
+            });
+
+            FillDefaultPlotView(view, "Effective Bandwidth", data);
         }
 
         public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap)
@@ -248,7 +251,7 @@ namespace audio_spectral_analyser
             FillDefaultPlotView(view, "", new double[0]);
         }
 
-        private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], double> calculationFunc)
+        private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], int, double> calculationFunc)
         {
             var span = (int)Math.Round(frameLength * (1.0 - overlap));
             int columns = waveList.Count / span;
@@ -259,8 +262,27 @@ namespace audio_spectral_analyser
                 var sample = GetSample(frameLength, beginPoint);
                 var fft = new FFTWrapper(sample);
                 var result = fft.CalculateMagnitude(windowType);
-                data[i] = calculationFunc(result); 
+                data[i] = calculationFunc(result, i); 
             }
+
+            return data;
+        }
+
+
+        private double[] CalculateFrequencyCentroid(WindowType windowType, int frameLength, double overlap)
+        {
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                    limiter += i * binWidth * sample[i];
+
+                var denominator = sample.Sum();
+                return limiter / denominator;
+            });
 
             return data;
         }
