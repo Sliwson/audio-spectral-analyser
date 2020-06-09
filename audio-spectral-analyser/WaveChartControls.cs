@@ -10,6 +10,7 @@ using OxyPlot.Series;
 using OxyPlot.Axes;
 using MathNet.Numerics;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace audio_spectral_analyser
 {
@@ -188,7 +189,7 @@ namespace audio_spectral_analyser
             var end = 2 * 400 * frameLength / sampleRate;
             if (begin == end)
             {
-                FillFundamentalPlot(view, data);
+                FillDefaultPlotView(view, "Frequency (Hz)", data);
                 return;
             }
 
@@ -205,16 +206,113 @@ namespace audio_spectral_analyser
                 data[i] = realIdx * sampleRate / (2 * frameLength);
             }
 
-            FillFundamentalPlot(view, data);
+            FillDefaultPlotView(view, "Frequency (Hz)", data);
         }
 
-        private void FillFundamentalPlot(PlotView view, double[] result)
+        public void PlotVolume(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {   
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                return sample.Sum(p => p * p) / sample.Length;
+            });
+
+            FillDefaultPlotView(view, "Volume", data);
+        }
+
+        public void PlotFrequencyCentroid(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+            var data = CalculateFrequencyCentroid(windowType, frameLength, overlap);
+            FillDefaultPlotView(view, "Frequency (Hz)", data);
+        }
+
+        public void PlotEffectiveBandwidth(PlotView view, WindowType windowType, int frameLength, double overlap)
+        {
+            var fc = CalculateFrequencyCentroid(windowType, frameLength, overlap);
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                {
+                    var w = i * binWidth;
+                    limiter += (w - fc[idx]) * (w - fc[idx]) * sample[i] * sample[i];
+                }
+
+                var denominator = sample.Sum(p => p * p);
+                return limiter / denominator;
+            });
+
+            FillDefaultPlotView(view, "Effective Bandwidth", data);
+        }
+
+        public void PlotBandEnergy(PlotView view, WindowType windowType, int frameLength, double overlap, double minFrequency, double maxFrequency)
+        {
+            FillDefaultPlotView(view, "", new double[0]);
+            
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                {
+                    var w = i * binWidth;
+                    if (w >= minFrequency && w <= maxFrequency)
+                        limiter += sample[i] * sample[i];
+                }
+
+                var window = FFTWrapper.GetWindow(windowType, frameLength);
+                var denominator = window.Sum();
+                return limiter / denominator;
+            });
+
+            FillDefaultPlotView(view, "Band Energy", data);
+        }
+
+        private double[] ForEachFrame(WindowType windowType, int frameLength, double overlap, Func<double[], int, double> calculationFunc)
+        {
+            var span = (int)Math.Round(frameLength * (1.0 - overlap));
+            int columns = waveList.Count / span;
+            var data = new double[columns];
+
+            for (int i = 0, beginPoint = 0; i < columns; i++, beginPoint += span)
+            {
+                var sample = GetSample(frameLength, beginPoint);
+                var fft = new FFTWrapper(sample);
+                var result = fft.CalculateMagnitude(windowType);
+                data[i] = calculationFunc(result, i); 
+            }
+
+            return data;
+        }
+
+        private double[] CalculateFrequencyCentroid(WindowType windowType, int frameLength, double overlap)
+        {
+            var binWidth = sampleRate / frameLength; 
+
+            var data = ForEachFrame(windowType, frameLength, overlap, (double[] sample, int idx) => {
+                sample = sample.Take(frameLength / 2).ToArray();
+
+                double limiter = 0;
+                for (int i = 0; i < sample.Length; i++)
+                    limiter += i * binWidth * sample[i];
+
+                var denominator = sample.Sum();
+                return limiter / denominator;
+            });
+
+            return data;
+        }
+
+        private void FillDefaultPlotView(PlotView view, string yTitle, double[] result)
         {
             var model = new PlotModel { };
 
             model.Axes.Add(new LinearAxis
             {
-                Title = "Frequency (Hz)",
+                Title =  yTitle
             });
 
             model.Axes.Add(new LinearAxis
