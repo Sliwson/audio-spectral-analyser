@@ -3,10 +3,14 @@ Winforms program for spectral audio analysis.
 
 ![Alt text](report/images/scr8.png)
 
-# Features
+# Implemented plots
 * Fast Fourier Transform on whole signal or single frames with window functions
-* Spectral analysis
-* Fundamental tone frequency analysis
+* Spectogram
+* Fundamental tone frequency
+* Volume 
+* Frequency Centroid
+* Effective Bandwidth
+* Band Energy
 
 # Technology stack
 * Window system - WinForms
