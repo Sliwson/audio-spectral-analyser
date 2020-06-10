@@ -88,7 +88,29 @@ Parametr Frequency Centroid sprawdza się w rozróżnianiu mowy od muzyki. Dla s
 \caption{Frequency Centroid nagrania 'aba.wav'}
 \end{figure}
 
-\noindent Faktycznie, dla słowa 'aba' otrzymujemy wartości zbliżone do oczekiwanych. Częstotliwość samogłoski 'a' powinna zawierać się w zakresie 500-1000Hz. Na powyższym zdjęciu widzimy, że jest ona bardzo zbliżona do wzorcowego rezultatu. 
+\noindent Faktycznie, dla słowa 'aba' otrzymujemy wartości zbliżone do oczekiwanych. Częstotliwość samogłoski 'a' powinna zawierać się w zakresie 500-1000Hz. Na powyższym zdjęciu widzimy, że jest ona bardzo zbliżona do wzorcowego rezultatu. Dla muzyki o agresywnej charakterystyce otrzymujemy wartości zdecydowanie wyższe:
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr5.png}
+\centering
+\caption{Frequency Centroid nagrania 'Doom Eternal cut.wav'}
+\end{figure}
+
+\noindent Ciekway rezultat uzyskujemy dla nagrania o stałej częstotliwości 400Hz. Otrzymujemy wykres o bardzo regularnej, lecz nieoczekiwanej charakterystyce.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr6.png}
+\centering
+\caption{Frequency Centroid nagrania '400.wav'}
+\end{figure}
+
+\noindent Dobierając odpowiednią ramkę oraz długość ramki jesteśmy w stanie uzyskać centroid o wartości 400Hz. Jest to spowodowane charakterystycznym wpływem okna van Hanna na ten parametr.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr7.png}
+\centering
+\caption{Frequency Centroid nagrania '400.wav', okno van Hanna}
+\end{figure}
 
 \section{Wnioski}
 \subsection{Implementacja}
