@@ -24,11 +24,11 @@
   \pagenumbering{arabic}
   
 \section{Treść zadania}
-Celem zadania było zaimplementowanie programu, który wczytuje plik audio a następnie przeprowadza jego analizę w dziedzinie częstotliwości na poziomie ramki. Należało zbadać cztery parametry - \textit{Volume, Frequency Centroid, Effective Bandwidth} oraz \textit{Band Energy}.
+Celem zadania było zaimplementowanie programu, który wczytuje plik audio, a następnie przeprowadza jego analizę w dziedzinie częstotliwości na poziomie ramki. Należało zbadać cztery parametry - \textit{Volume, Frequency Centroid, Effective Bandwidth} oraz \textit{Band Energy}.
 
 \section{Opis aplikacji}
 
-Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \textit{WinForms}. Jako, że w zadaniu można było wykorzystać znaczną część implementacji z projektu 2 zdecydowałem, że zamiast tworzyć nowe rozwiązanie, projekt zrealizuję poprzez rozwój poprzedniego. Prace rozpocząłęm od dodania zakładek z nowymi parametrami.
+Aplikację zdecydowałem się wykonać w języku \textit{C\#}, w środowisku \textit{WinForms}. Jako, że w zadaniu można było wykorzystać znaczną część implementacji z projektu 2 zdecydowałem, że zamiast tworzyć nowe rozwiązanie, projekt zrealizuję poprzez rozwój poprzedniego. Prace rozpocząłęm od dodania zakładek z nowymi parametrami.
 
 \begin{figure}[H]
 \includegraphics[width=6in]{scr1.png}
@@ -58,9 +58,9 @@ $$BW^2(n)=\frac{\int_0^\infty(\omega-FC(n))^2S_n^2(\omega)d\omega}{\int_0^\infty
 Również w tym przypadku, konieczne było zamienienie całki na sumę w implementacji.
 
 \subsection{Band Energy}
-Ostatnim parametrem było \textit{Band Energy}, obliczane w przedziale częstotliwości od $f_0$ do $f_1$. Określa on energię w spektrum sygnału i określony jest wzorem:
+Ostatnim parametrem było \textit{Band Energy}, obliczane w przedziale częstotliwości od $f_0$ do $f_1$. Określa ono energię w spektrum sygnału i określony jest wzorem:
 $$BE_{[f_0,f_1]}(t)=\frac{\int_{f_0}^{f_1}S_t^2(f)df}{\int w(\tau)d\tau},$$
-gdzie w jest oknem analizy.
+gdzie $w$ jest oknem analizy.
 
 \section{Wyniki działania programu}
 
