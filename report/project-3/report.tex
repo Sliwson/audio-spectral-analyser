@@ -37,12 +37,37 @@ Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \tex
 \label{fig:interface}
 \end{figure}
 
+Użyte technologie pozostały bez zmian. Do obsługi plików audio użyłem biblioteki \textit{NAudio}, do rysowania wykresów \textit{OxyPlot}, a do obliczania FFT \textit{MathNet Numerics}.
+
 \section{Zaimplementowane metody}
+\subsection{Wstęp}
+Wszystkie zaimplementowane metody opierały się na analizowaniu sygnału audio w dziedzinie częstotliwości na poziomie ramki. Wejściowy sygnał był dzielony na ramki o zadanej długości (zachodziły one na siebie zgodnie z wartością parametru \textit{overlap}).
+
+\subsection{Volume}
+Głośność w tym opracowaniu wyznaczana była w inny sposób, niż w projekcie pierwszym. Dla danej ramki określona była następującym wzorem:
+$$Vol(n) = \frac{1}{N}\sum^{N-1}_{k=0}S_n^2(k),$$
+gdzie $S_n$ to wynik transformaty Fouriera dla ramki o indeksie n, a $N$ to długość ramki.
+
+\subsection{Frequency Centroid}
+Kolejnym badanym parametrem był \textit{Frequency Centroid}. Określa on gdzie zlokalizowany jest środek ciężkości dla spektogramu. Dla odbiorcy odpowiada wrażeniu jasności dźwięku. Wyraża się wzorem:
+$$FC(n)=\frac{\int_{0}^{\infty} \omega S_n(\omega)d\omega}{\int_0^\infty S_n(\omega)d\omega},$$
+gdzie $\omega$ to częstotliwość. Ze względu na fakt dyskretyzacji danych, całka w implementacji została zamieniona na sumę.
+
+\subsection{Effective Bandwidth}
+Używając obliczonego \textit{Frequency Centroid} można policzyć parametr bezpośrednio z nim związany, czyli \textit{Effective Bandwidth}. Określa on odchylenie standardowe częstosliwości, przez co dobrze określa szerokość pasma. Wyraża się wzorem:
+$$BW^2(n)=\frac{\int_0^\infty(\omega-FC(n))^2S_n^2(\omega)d\omega}{\int_0^\infty(\omega)d\omega}.$$
+Również w tym przypadku, konieczne było zamienienie całki na sumę w implementacji.
+
+\subsection{Band Energy}
+Ostatnim parametrem było \textit{Band Energy}, obliczane w przedziale częstotliwości od $f_0$ do $f_1$. Określa on energię w spektrum sygnału i określony jest wzorem:
+$$BE_{[f_0,f_1]}(t)=\frac{\int_{f_0}^{f_1}S_t^2(f)df}{\int w(\tau)d\tau},$$
+gdzie w jest oknem analizy.
 
 \section{Wyniki działania programu}
 
 \section{Wnioski}
 \subsection{Implementacja}
+Posiadając podłoże do pracy w postaci projektu drugiego, implementacja przebiegła szybko i sprawnie. Można było się oprzeć na kluczowych funkcjonalnościach takich jak podział sygnału na ramki, obliczanie transformaty Fouriera, czy rysowanie wykresów. Trudność sprawić mogło dostosowanie wzorów z całkami do obliczeń dyskretnych, lecz nie były one na tyle skomplikowane, aby okazało się to dużą przeszkodą.
 
 \subsection{Wyniki analizy audio}
 
