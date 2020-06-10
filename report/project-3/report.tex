@@ -112,12 +112,56 @@ Parametr Frequency Centroid sprawdza się w rozróżnianiu mowy od muzyki. Dla s
 \caption{Frequency Centroid nagrania '400.wav', okno van Hanna}
 \end{figure}
 
+\subsection{Effective Bandwdith}
+Parametr \textit{Effective Bandwidth} jest bezpośrednio skorelowany z parametrem \textit{Frequency Centroid}. Oczekujemy, że dla mowy będzie przyjmował niższe wartości, niż dla muzyki.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr8.png}
+\centering
+\caption{Effective Bandwidth nagrania 'makulatura.wav'}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr9.png}
+\centering
+\caption{Effective Bandwidth nagrania 'Amnesia cut.wav'}
+\end{figure}
+
+\noindent Wyniki spełniają oczekiwania - wartość \textit{Effective Bandwidth} dla muzyki jest zdecydowanie wyższa.
+
+\subsection{Band Energy}
+Wartość tego parametru w pełnym zakresie częstotliwości może posłużyć nam do wykrywania ciszy. Daje bardziej wiarygodne rezultaty niż np. ZCR, który miał tendencje do oscylacji, przez co dla niektórych nagrań wyniki były dalekie od oczekiwań. Kiedy ograniczymy analizę do konkretnego zakresu częstotliwości, również i ten parametr może posłużyć do rozróżniania mowy od muzyki.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr10.png}
+\centering
+\caption{Band Energy nagrania 'lama.wav', zakres 125-8000Hz}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr11.png}
+\centering
+\caption{Band Energy nagrania 'lama.wav', zakres 8000-100000Hz}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr12.png}
+\centering
+\caption{Band Energy nagrania 'maze battle cut.wav', zakres 125-8000Hz}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr13.png}
+\centering
+\caption{Band Energy nagrania 'maze battle cut.wav', zakres 8000-100000Hz}
+\end{figure}
+
 \section{Wnioski}
 \subsection{Implementacja}
 Posiadając podłoże do pracy w postaci projektu drugiego, implementacja przebiegła szybko i sprawnie. Można było się oprzeć na kluczowych funkcjonalnościach takich jak podział sygnału na ramki, obliczanie transformaty Fouriera, czy rysowanie wykresów. Trudność sprawić mogło dostosowanie wzorów z całkami do obliczeń dyskretnych, lecz nie były one na tyle skomplikowane, aby okazało się to dużą przeszkodą.
 
 \subsection{Wyniki analizy audio}
-
+Analiza audio na poziomie ramki w dziedzinie częstotliwości dostarcza ciekawych i przydatnych parametrów. Otrzymujemy oczekiwaną charakterystykę głośności, nieco lepszą niż w przypadku analizy amplitudy. Parametry \textit{Frequency Centroid} oraz \textit{Effective Bandwidth} mogą posłużyć do rozróżniania muzyki oraz mowy. Wartość \textit{Band Energy} mogłaby zaś posłużyć jako wskaźnik pomocny przy wykrywaniu ciszy.
 
 \begin{figure}[b]
 \centering
