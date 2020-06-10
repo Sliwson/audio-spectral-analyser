@@ -34,10 +34,9 @@ Aplikację zdecydowałem się wykonać w języku \textit{C\#} w środowisku \tex
 \includegraphics[width=6in]{scr1.png}
 \centering
 \caption{Interfejs użytkownika}
-\label{fig:interface}
 \end{figure}
 
-Użyte technologie pozostały bez zmian. Do obsługi plików audio użyłem biblioteki \textit{NAudio}, do rysowania wykresów \textit{OxyPlot}, a do obliczania FFT \textit{MathNet Numerics}.
+\noindent Użyte technologie pozostały bez zmian. Do obsługi plików audio użyłem biblioteki \textit{NAudio}, do rysowania wykresów \textit{OxyPlot}, a do obliczania FFT \textit{MathNet Numerics}.
 
 \section{Zaimplementowane metody}
 \subsection{Wstęp}
@@ -64,6 +63,32 @@ $$BE_{[f_0,f_1]}(t)=\frac{\int_{f_0}^{f_1}S_t^2(f)df}{\int w(\tau)d\tau},$$
 gdzie w jest oknem analizy.
 
 \section{Wyniki działania programu}
+
+\subsection{Volume}
+Obliczanie głośności za pomocą analizy spektralnej dało zadowalające wyniki. Porównując rezultaty do tych, otrzymanych za pomocą analizy amplitudy sygnału otrzymujemy wykres o podobnej charakterystyce, lecz pozbawiony szumów. Warto jednak zauważyć, że ten typ wyznaczania głośności jest bardziej skomplikowany obiczeniowo, ponieważ dla każdej ramki wymaga liczenia FFT.
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr2.png}
+\centering
+\caption{Głośność nagrania 'blaszczykowski.wav', analiza spektralna}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr3.png}
+\centering
+\caption{Głośność nagrania 'blaszczykowski.wav', analiza amplitudowa}
+\end{figure}
+
+\subsection{Frequency Centroid}
+Parametr Frequency Centroid sprawdza się w rozróżnianiu mowy od muzyki. Dla samej mowy, powinniśmy otrzymać wartości w zakresie 125-8000Hz. 
+
+\begin{figure}[H]
+\includegraphics[width=6in]{scr4.png}
+\centering
+\caption{Frequency Centroid nagrania 'aba.wav'}
+\end{figure}
+
+\noindent Faktycznie, dla słowa 'aba' otrzymujemy wartości zbliżone do oczekiwanych. Częstotliwość samogłoski 'a' powinna zawierać się w zakresie 500-1000Hz. Na powyższym zdjęciu widzimy, że jest ona bardzo zbliżona do wzorcowego rezultatu. 
 
 \section{Wnioski}
 \subsection{Implementacja}
