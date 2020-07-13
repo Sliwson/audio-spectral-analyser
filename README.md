@@ -1,7 +1,7 @@
 # Audio spectral analyser
 Winforms program for spectral audio analysis.
 
-![GUI](report/project-3/images/scr8.png)
+![GUI](report/project-3/images/scr1.png)
 
 # Implemented plots
 * Fast Fourier Transform on whole signal or single frames with window functions
